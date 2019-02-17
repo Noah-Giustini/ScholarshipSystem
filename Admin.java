@@ -1,3 +1,24 @@
 public class Admin implements User{
-    //I have no clue what i need to put in here as of right now -Noah
+    public void viewApplications() {
+        //to be implemented
+    }
+    public void confirmAward() {
+        //to be implemented
+    }
+    public void rejectApplication() {
+        //to be implemented
+    }
+    public Scholarship createScholarship() {
+        //to be implemented
+    }
+    public void modRemovScholarship() {
+        //to be implemented
+    }
+    public void status() {
+        //to be implemented
+    }
+    public void chooseWinner() {
+        //to be implemented
+    }
+
 }
