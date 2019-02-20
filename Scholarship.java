@@ -11,17 +11,14 @@ import java.io.FileReader;
 
 public class Scholarship{
 
+	private String name = "--";
+	private String schfile = "--";
+	private String duedate = "--";
+	private double amount = 0;
+	private int recipients = 0;
+	private int chosen = 0;
 
-	public BufferedReader input;
-
-	public String name = "--";
-	public String schfile = "--";
-	public String duedate = "--";
-	public double amount = 0;
-	public int recipients = 0;
-	public int chosen = 0;
-
-	public ArrayList<String> levels = new ArrayList<String>();
+	private ArrayList<String> levels = new ArrayList<String>();
 
 	
 
@@ -156,7 +153,7 @@ public class Scholarship{
 	}	
 	
 	
-	public void overWriteLine(String tag, String newtext) throws Exception{
+	private void overWriteLine(String tag, String newtext) throws Exception{
 		
 		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.name + ".temp")));
 		BufferedReader br = new BufferedReader(new FileReader(this.schfile));

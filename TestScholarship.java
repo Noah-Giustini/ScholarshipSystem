@@ -32,7 +32,9 @@ public class TestScholarship{
 		
 		System.out.println(s3.getRecipients());
 		
+		Application a1 = new Application("test", "cool name");
 		
+		System.out.println(a1.getGPA());
 
 
 
