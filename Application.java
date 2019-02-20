@@ -31,7 +31,7 @@ public class Application{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
 		
-		this.appfile = this.scholarship + this.student + ".txt";
+		this.appfile = this.scholarship + " " + this.student + ".txt";
 		
 		File f = new File(this.appfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -128,7 +128,7 @@ public class Application{
 	
 	public void overWriteLine(String tag, String newtext) throws Exception{
 		
-		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.scholarship + this.student + ".temp")));
+		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.scholarship +  " " + this.student + ".temp")));
 		BufferedReader br = new BufferedReader(new FileReader(this.appfile));
 		
 		String line;
@@ -149,9 +149,9 @@ public class Application{
 		File f = new File(this.appfile);
 		boolean b = f.delete();
 		File f1 = new File(this.appfile);
-		File f2 = new File(this.scholarship + this.student + ".temp");
+		File f2 = new File(this.scholarship +  " " + this.student + ".temp");
 		b = f2.renameTo(f1);
-		File f3 = new File(this.scholarship + this.student + ".temp");
+		File f3 = new File(this.scholarship +  " " + this.student + ".temp");
 		b = f3.delete();
 	}
 	
