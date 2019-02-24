@@ -7,7 +7,7 @@ public class Student implements User{
     /**
      * All the applications the student has made
      */
-    private ArrayList<Application> applications;
+    private ArrayList<Application> applications;        //TODO make method to get this list of applications
     private boolean hasGottenScholarship = false;
 
 
