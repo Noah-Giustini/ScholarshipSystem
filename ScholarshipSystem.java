@@ -6,7 +6,6 @@ import java.util.Scanner;
  */
 public class ScholarshipSystem {
 
-
 /**
  * The main method controls the experience
  */
@@ -36,21 +35,46 @@ public class ScholarshipSystem {
             while(!(userInput.equals("view scholarships") || userInput.equals("manage applications"))) {
                 userInput = scan.nextLine().toLowerCase();
     
-                //invalid login choice (not student or admin)
+                //invalid command
                 if(!(userInput.equals("view scholarships") || userInput.equals("manage applications"))) {
                     System.out.println("Invalid command. Please enter view scholarships or manage applications");
                 }
             }
 
+            Student currentStudent = new Student();
             switch(userInput) {
                 case "manage applications":  
-                    //Student currentStudent = new Student();
-                    studentManageApplicationPortal(/*currentStudent,*/scan);
+                    studentManageApplicationPortal(currentStudent,scan);
+                    break;
+
+                case "view scholarships":
+                    studentScholarshipPortal(currentStudent, scan);
                     break;
             }
         }
         else if (loginChoice.equals("admin")) {
+            String userInput = "";
+            System.out.println("You may <view scholarships> or <create scholarship>");
 
+            while(!(userInput.equals("view scholarships") || userInput.equals("create scholarship"))) {
+                userInput = scan.nextLine().toLowerCase();
+    
+                //invalid command
+                if(!(userInput.equals("view scholarships") || userInput.equals("create scholarship"))) {
+                    System.out.println("Invalid command. Please enter view scholarships or create scholarship");
+                }
+            }
+
+            Admin currentAdmin = new Admin();
+            switch(userInput) {
+                case "view scholarships":
+                    adminManageScholarshipPortal(currentAdmin, scan);
+                    break;
+
+                case "create scholarship":
+                    adminCreateScholarshipPortal(currentAdmin, scan);
+                    break;
+            }
         }
         //if something horrible and unexpected happens with the above login choice, this should catch it
         else {
@@ -61,10 +85,10 @@ public class ScholarshipSystem {
 
     /**
      * Steps the student into their application portal where they can view and manage their applications.
-     * 
-     * PARTS COMMENTED OUT TO ALLOW FOR TESTING WITHOUT NEEDING A WORKING STUDENT CLASS
+     * @param currentStudent the student currently logged in
+     * @param scan The input scanner
      */
-    private static void studentManageApplicationPortal(/*Student currentStudent,*/ Scanner scan) {
+    private static void studentManageApplicationPortal(Student currentStudent, Scanner scan) {
 
         printFakeApplication(); //TODO: REMOVE THIS LINE WHEN STUDENT AND APPLICATION CLASS WORK
 
@@ -79,9 +103,9 @@ public class ScholarshipSystem {
 
             if(userInput.equals("view")) {
                 isValidCommand = true;
-                //currentStudent.viewApplications();
+                currentStudent.viewApplications();
 
-            } else if(userInput.equals("edit")) {
+            } else if(userInput.equals("edit") || userInput.equals("withdraw")) {
                 isValidCommand = true;
 
                 //if student has no applications, end
@@ -90,32 +114,102 @@ public class ScholarshipSystem {
                     System.exit(0);
                 }
 
-                System.out.print("Enter the name of the application you wish to edit: ");
+                System.out.print("Enter the name of the application you wish to " + userInput + ": ");
                 Boolean validApplication = false;
-                String applicationToEditName = "";
+                String applicationName = "";
 
+                //while loop checks to make sure user entered an application that exists
                 while(validApplication == false) {
-                    applicationToEditName = scan.nextLine().toLowerCase();
+                    applicationName = scan.nextLine().toLowerCase();
 
                     for (Application app : currentStudent.getApplications()) {  //TODO Need this method in Student class
-                        if(applicationToEditName.equals(app.getScholarship().toLowerCase())) {
-                            //currentStudent.editApplication(app);
+                        if(applicationName.equals(app.getScholarship().toLowerCase())) {
+                            validApplication = true;
+
+                            if(userInput.equals("edit")) {
+                                currentStudent.editApplication(app);
+                            } else if(userInput.equals("withdraw")) {
+                                currentStudent.withdrawApplication(app);
+                            }
+                            
+                            System.out.println("Your application has been updated successfully!");
+                            System.exit(0);         //For iteration 1 since we won't have backtracking
                         }
                     }
+
+                    System.out.println("Invalid application name. Please try again.");
                 }
 
 
-            } else if(userInput.equals("withdraw")) {
+            } else if(userInput.equals("accept") || userInput.equals("decline")) {
                 isValidCommand = true;
-            } else if(userInput.equals("accept")) {
-                isValidCommand = true;
-            } else if(userInput.equals("decline")) {
-                isValidCommand = true;
+
+                //if student has no applications, end
+                if(currentStudent.getApplications().isEmpty()) {
+                    System.out.println("You have no applications.");
+                    System.exit(0);
+                }
+
+                //TODO FINISH ADMIN PORTAL BEFORE PROGRESSING FURTHER
+
             } else {
                 System.out.println(userInput + " is not a valid command. Please try again.");
             }
 
         }
+
+    }
+
+    /**
+     * Puts the student into a portal where they can view all scholarships they are eligible for and apply to them
+     * @param currentStudent the student currently logged in
+     * @param scan The input scanner
+     */
+    private static void studentScholarshipPortal(Student currentStudent, Scanner scan) {
+
+    }
+
+    /**
+     * The portal where the admin can view and manage existing scholarships and applications to them
+     * @param currentAdmin the admin currently logged in
+     * @param scan The input scanner
+     */
+    private static void adminManageScholarshipPortal(Admin currentAdmin, Scanner scan) {
+
+    }
+
+    /**
+     * The portal where the admin can create new scholarships
+     * @param currentAdmin the admin currently logged in
+     * @param scan The input scanner
+     */
+    private static void adminCreateScholarshipPortal(Admin currentAdmin, Scanner scan) {
+        String scholarshipName, scholarshipDescription, scholarshipDeadline;
+        ArrayList<String> scholarshipRequirements = new ArrayList<>();
+        Double reward;
+
+        System.out.print("Please enter the name of the scholarship (case sensitive): ");
+        scholarshipName = scan.nextLine();
+
+        System.out.print("\nPlease enter the monetary reward of the scholarship: ");
+        reward = scan.nextDouble();
+
+        System.out.print("\nPlease enter the brief description of the scholarship (as a single line): ");
+        scholarshipDescription = scan.nextLine();
+
+        System.out.print("\nPlease enter the deadline of the scholarship (as numbers, MMDDYYYY)");
+        scholarshipDeadline = scan.nextLine();
+
+        System.out.print("\nPlease enter the requirements as one line each. Type end when you are finished.");
+        String singleRequirement = scan.nextLine();
+        while(!singleRequirement.toLowerCase().equals("end")) {
+            scholarshipRequirements.add(singleRequirement);
+
+            singleRequirement = scan.nextLine();
+        }
+
+        currentAdmin.createScholarship();   //TODO implement this method using the above local variables as parameters
+                                            //TODO create a list of all existing scholarships that can be updated 
 
     }
 
