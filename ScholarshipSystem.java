@@ -167,7 +167,49 @@ public class ScholarshipSystem {
      * @param scan The input scanner
      */
     private static void studentScholarshipPortal(Student currentStudent, Scanner scan) {
+        currentStudent.viewScholarships();
 
+        System.out.print("\nEnter the name of the scholarship you wish to select: ");
+
+        Boolean isValidScholarship = false;
+        String desiredScholarshipName = "";
+        Scholarship desiredScholarship;
+        //check that the name the user entered is an existing scholarship
+        while(isValidScholarship == false) {
+            desiredScholarshipName = scan.nextLine().toLowerCase();
+
+            for (Scholarship sch : currentStudent.getEligbleScholarships()) {
+                if(sch.getName().toLowerCase().equals(desiredScholarship)) {
+                    desiredScholarship = sch;
+                    isValidScholarship = true;
+                }
+            }
+            if(isValidScholarship == false) {
+                System.out.println("Please enter a valid scholarship name.");
+            }
+        }
+
+        //student can now apply for that scholarship
+        System.out.println("You may <apply> to the " + desiredScholarshipName + " Scholarship.");
+        String userInput = "";
+
+        //command validation
+        while(!(userInput.equals("apply"))) {
+            userInput = scan.nextLine().toLowerCase();
+    
+               //invalid command
+              if(!(userInput.equals("apply"))) {
+                  System.out.println("Invalid command. Please enter remove, edit or view applications");
+              }
+        }
+
+        switch(userInput) {     //placed in switch in case we want to expand the student's commands here later
+            case "apply":
+                currentStudent.apply(desiredScholarship);
+                break;
+        }
+
+        
     }
 
     /**
@@ -233,6 +275,9 @@ public class ScholarshipSystem {
 
     /**
      * This method allows the admin to view all applications on the desired scholarship and see detailed views of an application
+     * @param currentAdmin The admin object which holds many useful methods
+     * @param scan The scanner for user input
+     * @param desiredScholarship The name of the scholarship the user has selected and wants to manage
      */
     private static void adminApplicationAwardPortal(Admin currentAdmin, Scanner scan, String desiredScholarship) {
         currentAdmin.viewApplications(desiredScholarship);      //TODO implement this method in admin class
