@@ -5,7 +5,8 @@ import java.util.Scanner;
  * This class drives the "on rails" text based interface.
  */
 public class ScholarshipSystem {
-
+    
+    static ArrayList<Scholarship> scholarshipList = new ArrayList<>(); //temporary place to store scholarships. Must be initialized on start up
 /**
  * The main method controls the experience
  */
@@ -175,7 +176,68 @@ public class ScholarshipSystem {
      * @param scan The input scanner
      */
     private static void adminManageScholarshipPortal(Admin currentAdmin, Scanner scan) {
+        System.out.println("Scholarships:");
 
+        //prints every scholarship in the list
+        for (Scholarship sch : scholarshipList) {
+            System.out.println("Name: " + sch.getName() + " |Amount: " + sch.getAmount() + " |Deadline: " + sch.getDueDate());
+        }
+
+        System.out.print("\nEnter the name of the scholarship you wish to select and manage: ");
+
+        Boolean isValidScholarship = false;
+        String desiredScholarship = "";
+        //check that the name the user entered is an existing scholarship
+        while(isValidScholarship == false) {
+            desiredScholarship = scan.nextLine().toLowerCase();
+
+            for (Scholarship sch : scholarshipList) {
+                if(sch.getName().toLowerCase().equals(desiredScholarship)) {
+                    desiredScholarship = sch.getName();
+                    isValidScholarship = true;
+                }
+            }
+            if(isValidScholarship == false) {
+                System.out.println("Please enter a valid scholarship name.");
+            }
+        }
+
+        System.out.println("You may <remove>, <edit> or <view applications> on the chosen " + desiredScholarship + " Scholarship.");
+
+        String userInput = "";
+
+        //command validation
+        while(!(userInput.equals("remove") || userInput.equals("view") || userInput.equals("view applications"))) {
+            userInput = scan.nextLine().toLowerCase();
+    
+               //invalid command
+              if(!(userInput.equals("remove") || userInput.equals("view") || userInput.equals("view applications"))) {
+                  System.out.println("Invalid command. Please enter remove, edit or view applications");
+              }
+        }
+
+        switch(userInput) {
+            case "remove":
+                currentAdmin.modRemovScholarship(desiredScholarship); //TODO allow system to pass scholarship name to remove it and update scholarship list
+                break;
+            case "edit":
+                currentAdmin.editScholarship(desiredScholarship);   //TODO add this edit method to admin class
+                break;
+            case "view applications":
+                adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
+                break;
+
+        }
+
+    }
+
+    /**
+     * This method allows the admin to view all applications on the desired scholarship and see detailed views of an application
+     */
+    private static void adminApplicationAwardPortal(Admin currentAdmin, Scanner scan, String desiredScholarship) {
+        currentAdmin.viewApplications(desiredScholarship);      //TODO implement this method in admin class
+
+        //TODO allow admin to see a brief view of an application (student name, grade, level?) and choose to see a detailed view (full application)
     }
 
     /**
