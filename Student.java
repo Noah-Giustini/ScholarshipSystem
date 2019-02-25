@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.*;
 
 //import javafx.application.Application;
 
@@ -94,7 +95,7 @@ public class Student implements User{
         System.out.println("Are you sure you want to accept this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
         if(choice.equals("y")){
-            scholarship.accept(this); // just a placeholder for now
+            //scholarship.accept(this); just a placeholder for now
             this.hasGottenScholarship = true;
             this.rejectAll();
         }
@@ -162,5 +163,8 @@ public class Student implements User{
         this.hasGottenScholarship = hasGottenScholarship;
     }
 
+    private void rejectAll(){
+
+    }
 
 }
