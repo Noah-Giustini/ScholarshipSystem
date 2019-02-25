@@ -40,7 +40,7 @@ public class Student implements User{
             switch (choice){
                 case "e": tryAgain = false; 
                     break;
-                default:  app.edit();  //generic name 
+                default:  //app.edit();  //generic name 
                     break;
             }
             scan.nextLine();
@@ -93,7 +93,7 @@ public class Student implements User{
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you sure you want to accept this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
-        if(choice == "y"){
+        if(choice.equals("y")){
             scholarship.accept(this); // just a placeholder for now
             this.hasGottenScholarship = true;
             this.rejectAll();
@@ -112,8 +112,8 @@ public class Student implements User{
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you sure you want to decline this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
-        if(choice == "y"){
-            scholarship.decline(this); // just a placeholder for now
+        if(choice.equals("y")){
+            //scholarship.decline(this); // just a placeholder for now
         }
         scan.close();
     
@@ -132,6 +132,34 @@ public class Student implements User{
      */
     public ArrayList<Scholarship> getEligbleScholarships(){
         return null;
+    }
+
+    /**
+     * @return the applications
+     */
+    public ArrayList<Application> getApplications() {
+        return applications;
+    }
+
+    /**
+     * @param applications the applications to set
+     */
+    public void setApplications(ArrayList<Application> applications) {
+        this.applications = applications;
+    }
+
+    /**
+     * @return the hasGottenScholarship
+     */
+    public boolean isHasGottenScholarship() {
+        return hasGottenScholarship;
+    }
+
+    /**
+     * @param hasGottenScholarship the hasGottenScholarship to set
+     */
+    public void setHasGottenScholarship(boolean hasGottenScholarship) {
+        this.hasGottenScholarship = hasGottenScholarship;
     }
 
 
