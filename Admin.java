@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Admin implements User{
+public class Admin extends User{
     public void viewApplications() {
         //to be implemented
     }
