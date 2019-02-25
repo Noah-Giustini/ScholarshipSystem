@@ -10,13 +10,13 @@ public class Admin extends User{
     public void rejectApplication() {
         //to be implemented
     }
-    public Scholarship createScholarship() {
+    public Scholarship createScholarship(String name, String dueDate, double amt, int recipients, ArrayList<String> levels) {
         Scanner scan = new Scanner(System.in);
-        String name;
+        /* String name;
         String dueDate;
         double amt;
         int recipients;
-        ArrayList<String> levels = new ArrayList<String>();
+        ArrayList<String> levels = new ArrayList<String>(); */
 
         System.out.println("What is the name of the scholarship you wish to create?");
         name = scan.nextLine();
@@ -72,9 +72,6 @@ public class Admin extends User{
         //to be implemented
     }
     public void status() {
-        //to be implemented
-    }
-    public void chooseWinner() {
         //to be implemented
     }
 
