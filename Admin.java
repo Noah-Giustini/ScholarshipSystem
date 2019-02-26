@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.sql.Date;
 
 public class Admin extends User{
     public void viewApplications() {
@@ -10,6 +11,15 @@ public class Admin extends User{
     public void rejectApplication() {
         //to be implemented
     }
+    /**
+	 * Create a new scholarship to be entered in the system
+	 * @param name is the file name given by user 
+     * @param dueDate is the due date of the new scholarship
+     * @param amt is the amount that the scholarship is worth
+     * @param recipients is the integer number of recipients that the scholarship can go out to
+     * @param levels an array list of the levels that can recieve the scholarship
+     * @return The newly created scholarship is returned as an output
+	 */
     public Scholarship createScholarship(String name, String dueDate, double amt, int recipients, ArrayList<String> levels) {
         Scanner scan = new Scanner(System.in);
         /* String name;
@@ -18,6 +28,16 @@ public class Admin extends User{
         int recipients;
         ArrayList<String> levels = new ArrayList<String>(); */
 
+        //Updated code starts here 02/26/2019
+        Scholarship s = new Scholarship(name);
+        s.setDueDate(dueDate);
+        s.setAmount(amt);
+        s.setRecipients(recipients);
+        s.setLevels(levels);
+        return s;
+
+        //old code from before 02/26/2019 is below: This code is no longer needed in this class and should be deleted after implementation in the Scholarshipsystem class
+        /*
         System.out.println("What is the name of the scholarship you wish to create?");
         name = scan.nextLine();
         Scholarship scol = new Scholarship(name);
@@ -64,7 +84,7 @@ public class Admin extends User{
         }
         scol.setLevels(levels);
         return scol;
-
+        */
 
 
     }
