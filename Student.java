@@ -3,14 +3,80 @@ import java.util.*;
 
 //import javafx.application.Application;
 
-public class Student implements User{
+public class Student extends User{
 
     /**
      * All the applications the student has made
      */
     private ArrayList<Application> applications;        //TODO make method to get this list of applications
     private boolean hasGottenScholarship = false;
+    private String eduLvl = "Undergrad";
+    private String name;
+    private double GPA;
 
+
+    public Student(String name, String eduLvl, double GPA){
+        this.name = name;
+        this.eduLvl = eduLvl;
+        this.GPA = GPA;
+    }
+
+    /**
+     * @return the applications
+     */
+    public ArrayList<Application> getApplications() {
+        return applications;
+    }
+
+    /**
+     * @return the hasGottenScholarship
+     */
+    public boolean isHasGottenScholarship() {
+        return hasGottenScholarship;
+    }
+
+
+    /**
+     * @return the eduLvl
+     */
+    public String getEduLvl() {
+        return eduLvl;
+    }
+
+    /**
+     * @param eduLvl the eduLvl to set
+     */
+    public void setEduLvl(String eduLvl) {
+        this.eduLvl = eduLvl;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the gPA
+     */
+    public double getGPA() {
+        return GPA;
+    }
+
+    /**
+     * @param gPA the gPA to set
+     */
+    public void setGPA(double gPA) {
+        GPA = gPA;
+    }
 
 
 
@@ -19,9 +85,23 @@ public class Student implements User{
      * @param scholarship the scholarship the student will apply for
      * @return the new application of the student
      */
-    public Application apply(Scholarship scholarship) {
+    public void apply(Scholarship scholarship) {
+        Scanner scan = new Scanner(System.in);
+        Application app = new Application(scholarship.getName(), this.name);
+        try {
+            app.setPriority(scan.nextInt());
+        } catch (Exception e) {
+            System.out.println("invalid priority, set to 1");
+            app.setPriority(1);
+        }
+        app.setGPA(this.GPA);
+        app.setDate("01/02/2019");
+        app.setStatus("pending");
+        app.setEducationLevel(this.eduLvl);
+        
 
-        return null;
+
+        
     }
 
 
@@ -39,9 +119,19 @@ public class Student implements User{
             System.out.println("Press      Placeholder \n  Enter \"e\" to exit");
             choice = scan.nextLine();
             switch (choice){
-                case "e": tryAgain = false; 
+                case "e":   tryAgain = false; 
                     break;
-                default:  //app.edit();  //generic name 
+
+                case "g":   this.editGPA(app);
+                    break;
+
+                case "l":   this.editLevel(app);
+                    break;
+
+                case "p":   this.fixPriority();
+                    break;
+
+                default:    System.out.println("Please enter a valid command");
                     break;
             }
             scan.nextLine();
@@ -68,6 +158,9 @@ public class Student implements User{
      */
     public void withdrawApplication(Application app) {
         this.applications.remove(app);
+        Scholarship sch = new Scholarship(app.getScholarship());
+        //not sure how to tell scholarship application was withdrawn
+        //sch.deleteApplication(app); 
         this.fixPriority();
         System.out.println("Application has been sucessfully withdrawn. ");
     }
@@ -76,8 +169,7 @@ public class Student implements User{
     /**
      * Will show all scholarships the student is eligible for 
      */
-    public void viewScholarships(){
-        ArrayList<Scholarship> scholars = this.getEligbleScholarships();
+    public void viewScholarships(ArrayList<Scholarship> scholars){
         for (Scholarship s : scholars){
             s.toString();
         }
@@ -135,36 +227,48 @@ public class Student implements User{
         return null;
     }
 
-    /**
-     * @return the applications
-     */
-    public ArrayList<Application> getApplications() {
-        return applications;
-    }
-
-    /**
-     * @param applications the applications to set
-     */
-    public void setApplications(ArrayList<Application> applications) {
-        this.applications = applications;
-    }
-
-    /**
-     * @return the hasGottenScholarship
-     */
-    public boolean isHasGottenScholarship() {
-        return hasGottenScholarship;
-    }
-
-    /**
-     * @param hasGottenScholarship the hasGottenScholarship to set
-     */
-    public void setHasGottenScholarship(boolean hasGottenScholarship) {
-        this.hasGottenScholarship = hasGottenScholarship;
-    }
-
     private void rejectAll(){
 
     }
+
+    private void editGPA(Application app){
+        System.out.println("Your current gpa in the application is: " + app.getGPA());
+        Scanner scan = new Scanner(System.in);
+        double newGPA;
+        boolean tryAgain = true;
+        
+        while(tryAgain){
+            try {
+                System.out.println("What would you like to change it to? ");
+                newGPA = scan.nextDouble();
+                if(newGPA < 0.0 || newGPA > 4.0){
+                    System.out.println("Please enter a valid number");   
+                }
+                else{
+                    tryAgain = false;
+                }
+
+            } catch (Exception e) {
+                System.out.println("Please enter a valid number");
+            }
+            scan.next();
+        }
+        app.setGPA(newGPA);
+        scan.close();
+    }
+
+
+
+    private void editLevel(Application app){
+        System.out.println("Your current level is: " + app.getEducationLevel());
+        Scanner scan = new Scanner(System.in);
+        boolean tryAgain = true;
+        System.out.println("What is your current education level?");
+        newEdu = scan.nextLine();
+        scan.close();
+        app.setEducationLevel(newEdu);    
+    }
+
+
 
 }
