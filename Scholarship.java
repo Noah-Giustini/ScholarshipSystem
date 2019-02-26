@@ -258,12 +258,11 @@ public class Scholarship{
 		
 		String EduLvls = "";
 		for (int i = 0; i < this.levels.size(); i++){
-			EduLvls += this.levels.get(i));
-			EduLvls += " ";
+			EduLvls = EduLvls + this.levels.get(i);
+			EduLvls = EduLvls + " ";
 		}
 		
-		
-		return(this.name + ": Due " + this.duedate + ", " + this.amount + "$" + ", " + this.recipients + " number of recipients," + this.chosen + " number of recpients chosen, " + "Education levels " + EduLvls);
+		return "" + this.name + ": Due " + this.duedate + ", " + this.amount + "$" + ", " + this.recipients + " number of recipients, " + this.chosen + " number of recpients chosen, " + "Education levels " + EduLvls;
 	}
 	
 }
