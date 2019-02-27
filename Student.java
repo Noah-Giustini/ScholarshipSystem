@@ -98,6 +98,7 @@ public class Student extends User{
         app.setDate("01/02/2019");
         app.setStatus("pending");
         app.setEducationLevel(this.eduLvl);
+        this.applications.add(app);
         
 
 
@@ -163,11 +164,13 @@ public class Student extends User{
         //sch.deleteApplication(app); 
         this.fixPriority();
         System.out.println("Application has been sucessfully withdrawn. ");
+    
     }
 
 
     /**
-     * Will show all scholarships the student is eligible for 
+     * shows available scholarships 
+     * @param scholars arraylist of all scholarships
      */
     public void viewScholarships(ArrayList<Scholarship> scholars){
         for (Scholarship s : scholars){
@@ -231,6 +234,10 @@ public class Student extends User{
 
     }
 
+    /**
+     * lets the student change the GPA
+     * @param app application to edit
+     */
     private void editGPA(Application app){
         System.out.println("Your current gpa in the application is: " + app.getGPA());
         Scanner scan = new Scanner(System.in);
@@ -259,6 +266,10 @@ public class Student extends User{
 
 
 
+    /**
+     * lets the student change the education level
+     * @param app application to edit
+     */
     private void editLevel(Application app){
         System.out.println("Your current level is: " + app.getEducationLevel());
         Scanner scan = new Scanner(System.in);
