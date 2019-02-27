@@ -222,4 +222,9 @@ public class Application{
 		
 	}
 	
+	public String toString(){
+		 
+		return this.scholarship + ": " + this.student + ", Date Submitted: " + this.date + ", GPA: " + this.gpa + ", Education Level: " + this.edulvl + ", Priority: " + this.priority + ", Status: " + this.status;
+	}
+	
 }

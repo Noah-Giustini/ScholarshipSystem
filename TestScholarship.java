@@ -37,8 +37,8 @@ public class TestScholarship{
 		System.out.println(a1.getGPA());
 		
 		System.out.println(s2);
-		System.out.println(s2.levels.get(i);
 
+		System.out.println(a1);
 
 
 	}
