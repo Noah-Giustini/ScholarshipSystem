@@ -13,6 +13,7 @@ public class ScholarshipSystem {
  * The main method controls the experience
  */
     public static void main(String[] args) {
+        Scholarship.startUp();
         //asks for login information and validates that input
         System.out.println("Welcome to the UC Scholarship system! Words that appear in <pointed braces> are commands that you can enter\n(do not type the braces)."
                             + "\n\nWould you like to log in as <student> or <admin>? (Please enter student or admin without the pointed braces)");

@@ -31,7 +31,7 @@ public class Scholarship{
 		
 		this.name = schname;
 		
-		this.schfile = schname + ".txt";
+		this.schfile = "Scholarships" + File.separator + schname + ".txt";
 		
 		File f = new File(this.schfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -265,6 +265,24 @@ public class Scholarship{
 		}
 		
 		return this.name + ", Due: " + this.duedate + ", Amount: " + this.amount + "$, Recipient(s): " + this.recipients + ", Recipient(s) Chosen: " + this.chosen + ", Education Levels: " + EduLvls;
+	}
+
+	public static void startUp(){
+		File folder = new File("Scholarships");
+		File[] listOfFiles = folder.listFiles();
+		for(File a : listOfFiles){
+			if(a.isFile()){
+				String name = a.getName().substring(0, (a.getName().length() - 4));
+				try {
+					//TODO: handle exception
+				Scholarship sch = new Scholarship(name);
+				ScholarshipSystem.scholarshipList.add(sch);
+				}
+				catch (Exception e){
+
+				}
+			}	
+		}
 	}
 	
 }

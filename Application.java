@@ -19,6 +19,7 @@ public class Application{
 	private String edulvl = "--";
 	private String status = "--";
 	private int priority = 0;
+
 	
 
 	/**
@@ -31,7 +32,7 @@ public class Application{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
 		
-		this.appfile = this.scholarship + " " + this.student + ".txt";
+		this.appfile = "Scholarships" + File.separator + this.scholarship + " " + this.student + ".txt";
 		
 		File f = new File(this.appfile);
 		if(f.exists() && !f.isDirectory()) { 

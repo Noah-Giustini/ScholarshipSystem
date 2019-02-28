@@ -1,0 +1,18 @@
+Name
+car
+
+Due Date
+--
+
+Amount
+45345.0
+
+Recipients
+4
+
+Recipients Chosen
+0
+
+Education Level
+bach1 
+
