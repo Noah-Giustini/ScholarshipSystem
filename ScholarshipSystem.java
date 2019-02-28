@@ -6,7 +6,9 @@ import java.util.Scanner;
  */
 public class ScholarshipSystem {
     
-    static ArrayList<Scholarship> scholarshipList = new ArrayList<>(); //temporary place to store scholarships. Must be initialized on start up
+    public static ArrayList<Scholarship> scholarshipList = new ArrayList<Scholarship>(); //temporary place to store scholarships. Must be initialized on start up
+    public static ArrayList<Application> applicationList = new ArrayList<Application>();
+
 /**
  * The main method controls the experience
  */

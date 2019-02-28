@@ -3,7 +3,7 @@ import java.util.*;
 
 //import javafx.application.Application;
 
-public class Student extends User{
+public class Student{
 
     /**
      * All the applications the student has made
@@ -99,6 +99,7 @@ public class Student extends User{
         app.setStatus("pending");
         app.setEducationLevel(this.eduLvl);
         this.applications.add(app);
+        ScholarshipSystem.applicationList.add(app);
         
 
 
@@ -160,8 +161,7 @@ public class Student extends User{
     public void withdrawApplication(Application app) {
         this.applications.remove(app);
         Scholarship sch = new Scholarship(app.getScholarship());
-        //not sure how to tell scholarship application was withdrawn
-        //sch.deleteApplication(app); 
+        ScholarshipSystem.applicationList.remove(app);
         this.fixPriority();
         System.out.println("Application has been sucessfully withdrawn. ");
     
@@ -190,7 +190,7 @@ public class Student extends User{
         System.out.println("Are you sure you want to accept this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
         if(choice.equals("y")){
-            //scholarship.accept(this); just a placeholder for now
+            scholarship.setChosen(scholarship.getChosen() + 1);
             this.hasGottenScholarship = true;
             this.rejectAll();
         }
@@ -209,7 +209,7 @@ public class Student extends User{
         System.out.println("Are you sure you want to decline this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
         if(choice.equals("y")){
-            //scholarship.decline(this); // just a placeholder for now
+            scholarship.setChosen(scholarship.getChosen() - 1); // just a placeholder for now
         }
         scan.close();
     
@@ -227,11 +227,16 @@ public class Student extends User{
      * @return arraylist of scholarships the student is eligible for
      */
     public ArrayList<Scholarship> getEligbleScholarships(){
-        return null;
+        return ScholarshipSystem.scholarshipList;
     }
 
     private void rejectAll(){
-
+        this.applications.clear();
+        for( Application app : ScholarshipSystem.applicationList){
+            if (this.name.equals(app.getStudent())){
+                ScholarshipSystem.applicationList.remove(app);
+            }
+        }
     }
 
     /**
