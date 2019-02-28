@@ -257,11 +257,11 @@ public class ScholarshipSystem {
         String userInput = "";
 
         //command validation
-        while(!(userInput.equals("remove") || userInput.equals("view") || userInput.equals("view applications"))) {
+        while(!(userInput.equals("remove") || userInput.equals("view applications") || userInput.equals("edit"))) {
             userInput = scan.nextLine().toLowerCase();
     
                //invalid command
-              if(!(userInput.equals("remove") || userInput.equals("view") || userInput.equals("view applications"))) {
+              if(!(userInput.equals("remove") || userInput.equals("view applications") || userInput.equals("edit"))) {
                   System.out.println("Invalid command. Please enter remove, edit or view applications");
               }
         }
