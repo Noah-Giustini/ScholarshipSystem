@@ -94,7 +94,7 @@ public class ScholarshipSystem {
      */
     private static void studentManageApplicationPortal(Student currentStudent, Scanner scan) {
 
-        printFakeApplication(); //TODO: REMOVE THIS LINE WHEN STUDENT AND APPLICATION CLASS WORK
+        //printFakeApplication(); //TODO: REMOVE THIS LINE WHEN STUDENT AND APPLICATION CLASS WORK
 
         System.out.println("\nYou can <view>, <edit>, <withdraw>, <accept> or <decline> an application.");
 
@@ -310,16 +310,20 @@ public class ScholarshipSystem {
         scholarshipName = scan.nextLine();
 
         System.out.print("\nPlease enter the monetary reward of the scholarship: ");
-        reward = scan.nextDouble();
+        reward = Double.parseDouble(scan.nextLine());
 
         System.out.print("\nPlease enter the brief description of the scholarship (as a single line): ");
         scholarshipDescription = scan.nextLine();
+        //scan.next();
 
         System.out.print("\nPlease enter the deadline of the scholarship (as numbers, MMDDYYYY): ");
         scholarshipDeadline = scan.nextLine();
+        //scan.next();
 
         System.out.print("\nPlease enter the number of recipients of the scholarship: ");
-        numberOfRecipients = scan.nextInt();
+        numberOfRecipients = Integer.parseInt(scan.nextLine());
+        //scan.next();
+        //scan.reset();
 
         System.out.println("\nPlease enter the education levels that are required for the scholarship as one line each (lowercase). Type end when you are finished. ");
         //TODO Run a loop and check inputs to ensure valid levels are entered here
@@ -336,6 +340,7 @@ public class ScholarshipSystem {
             }
 
             singleLevel = scan.nextLine();
+            
         }
 
 
