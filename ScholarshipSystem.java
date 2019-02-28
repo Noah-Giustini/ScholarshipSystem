@@ -42,8 +42,9 @@ public class ScholarshipSystem {
                 }
             }
 
-            Student currentStudent = new Student();
-            switch(userInput) {
+            //create student object to be able to pass information to the student portal and access student methods
+            Student currentStudent = new Student();     //TODO how did we want to handle this? Should student name, eduLevel and gpa be inputted
+            switch(userInput) {                         // or for iteration 1 should it be some default value?
                 case "manage applications":  
                     studentManageApplicationPortal(currentStudent,scan);
                     break;
@@ -167,19 +168,19 @@ public class ScholarshipSystem {
      * @param scan The input scanner
      */
     private static void studentScholarshipPortal(Student currentStudent, Scanner scan) {
-        currentStudent.viewScholarships();
+        currentStudent.viewScholarships(scholarshipList);
 
         System.out.print("\nEnter the name of the scholarship you wish to select: ");
 
         Boolean isValidScholarship = false;
         String desiredScholarshipName = "";
-        Scholarship desiredScholarship;
+        Scholarship desiredScholarship =  new Scholarship("PLACEHOLDER");   //maybe make a default/placeholder scholarship or change code here
         //check that the name the user entered is an existing scholarship
         while(isValidScholarship == false) {
             desiredScholarshipName = scan.nextLine().toLowerCase();
 
             for (Scholarship sch : currentStudent.getEligbleScholarships()) {
-                if(sch.getName().toLowerCase().equals(desiredScholarship)) {
+                if(sch.getName().toLowerCase().equals(desiredScholarshipName)) {
                     desiredScholarship = sch;
                     isValidScholarship = true;
                 }
@@ -294,6 +295,8 @@ public class ScholarshipSystem {
         String scholarshipName, scholarshipDescription, scholarshipDeadline;
         ArrayList<String> scholarshipRequirements = new ArrayList<>();
         Double reward;
+        int numberOfRecipients;
+        ArrayList<String> scholarshipEducationLevels = new ArrayList<>();
 
         System.out.print("Please enter the name of the scholarship (case sensitive): ");
         scholarshipName = scan.nextLine();
@@ -304,10 +307,31 @@ public class ScholarshipSystem {
         System.out.print("\nPlease enter the brief description of the scholarship (as a single line): ");
         scholarshipDescription = scan.nextLine();
 
-        System.out.print("\nPlease enter the deadline of the scholarship (as numbers, MMDDYYYY)");
+        System.out.print("\nPlease enter the deadline of the scholarship (as numbers, MMDDYYYY): ");
         scholarshipDeadline = scan.nextLine();
 
-        System.out.print("\nPlease enter the requirements as one line each. Type end when you are finished.");
+        System.out.print("\nPlease enter the number of recipients of the scholarship: ");
+        numberOfRecipients = scan.nextInt();
+
+        System.out.println("\nPlease enter the education levels that are required for the scholarship as one line each (lowercase). Type end when you are finished. ");
+        //TODO Run a loop and check inputs to ensure valid levels are entered here
+        String singleLevel = scan.nextLine();
+        while(!singleLevel.toLowerCase().equals("end")) {
+            switch(singleLevel) {
+                case "bach1": case "bach2": case "bach3": case "bach4": case "ms": case "phd":
+                    scholarshipEducationLevels.add(singleLevel);
+                    break;
+
+                default:
+                    System.out.println("\nInvalid education level. Must be at least one of {bach1, bach2, bach3, bach4, ms, phd}. Please try again.");
+                    break;
+            }
+
+            singleLevel = scan.nextLine();
+        }
+
+
+        System.out.println("\nPlease enter the requirements as one line each. Type end when you are finished.");
         String singleRequirement = scan.nextLine();
         while(!singleRequirement.toLowerCase().equals("end")) {
             scholarshipRequirements.add(singleRequirement);
@@ -315,8 +339,16 @@ public class ScholarshipSystem {
             singleRequirement = scan.nextLine();
         }
 
-        currentAdmin.createScholarship();   //TODO implement this method using the above local variables as parameters
-                                            //TODO create a list of all existing scholarships that can be updated 
+        currentAdmin.createScholarship(scholarshipName, scholarshipDeadline, reward, numberOfRecipients, scholarshipEducationLevels);
+        
+        try {
+            scholarshipList.add(new Scholarship(scholarshipName));
+        } catch (Exception e) {
+            System.out.println("ERROR: Unable to create scholarship. Closing system.....");
+            System.exit(0);
+        }     
+        //scholarshipList.add(new Scholarship(scholarshipName, scholarshipDeadline, reward, numberOfRecipients, scholarshipEducationLevels));
+        //TODO create a list of all existing scholarships that can be updated 
 
     }
 
