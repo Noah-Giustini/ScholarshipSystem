@@ -45,7 +45,7 @@ public class ScholarshipSystem {
             }
 
             //create student object to be able to pass information to the student portal and access student methods
-            Student currentStudent = new Student();     //TODO how did we want to handle this? Should student name, eduLevel and gpa be inputted
+            Student currentStudent = new Student("PLACEHOLDER", "bach1", 3.0);     //TODO how did we want to handle this? Should student name, eduLevel and gpa be inputted
             switch(userInput) {                         // or for iteration 1 should it be some default value?
                 case "manage applications":  
                     studentManageApplicationPortal(currentStudent,scan);
@@ -170,6 +170,7 @@ public class ScholarshipSystem {
      * @param scan The input scanner
      */
     private static void studentScholarshipPortal(Student currentStudent, Scanner scan) {
+        try {
         currentStudent.viewScholarships(scholarshipList);
 
         System.out.print("\nEnter the name of the scholarship you wish to select: ");
@@ -211,7 +212,10 @@ public class ScholarshipSystem {
                 currentStudent.apply(desiredScholarship);
                 break;
         }
-
+     } catch (Exception e) {
+         System.out.println("ERROR");
+         System.exit(0);
+     }
         
     }
 
@@ -263,10 +267,12 @@ public class ScholarshipSystem {
 
         switch(userInput) {
             case "remove":
-                currentAdmin.modRemovScholarship(desiredScholarship); //TODO allow system to pass scholarship name to remove it and update scholarship list
+                System.out.println("ENTERED REMOVE. FUNCTIONALITY NOT YET FINISED!");
+                //currentAdmin.modRemovScholarship(desiredScholarship); //TODO allow system to pass scholarship name to remove it and update scholarship list
                 break;
             case "edit":
-                currentAdmin.editScholarship(desiredScholarship);   //TODO add this edit method to admin class
+                System.out.println("ENTERED EDIT. FUNCTIONALITY NOT YET FINISED!");
+                //currentAdmin.editScholarship(desiredScholarship);   //TODO add this edit method to admin class
                 break;
             case "view applications":
                 adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
@@ -283,8 +289,8 @@ public class ScholarshipSystem {
      * @param desiredScholarship The name of the scholarship the user has selected and wants to manage
      */
     private static void adminApplicationAwardPortal(Admin currentAdmin, Scanner scan, String desiredScholarship) {
-        currentAdmin.viewApplications(desiredScholarship);      //TODO implement this method in admin class
-
+        //currentAdmin.viewApplications(desiredScholarship);      //TODO implement this method in admin class
+        currentAdmin.viewApplications();
         //TODO allow admin to see a brief view of an application (student name, grade, level?) and choose to see a detailed view (full application)
     }
 
@@ -341,9 +347,10 @@ public class ScholarshipSystem {
             singleRequirement = scan.nextLine();
         }
 
-        currentAdmin.createScholarship(scholarshipName, scholarshipDeadline, reward, numberOfRecipients, scholarshipEducationLevels);
+        
         
         try {
+            currentAdmin.createScholarship(scholarshipName, scholarshipDeadline, reward, numberOfRecipients, scholarshipEducationLevels);
             scholarshipList.add(new Scholarship(scholarshipName));
         } catch (Exception e) {
             System.out.println("ERROR: Unable to create scholarship. Closing system.....");
