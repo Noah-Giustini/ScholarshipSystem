@@ -1,7 +1,10 @@
 import java.util.Scanner;
-import java.sql.Date;
+import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
-public class Admin extends User{
+public class Admin{
     public void viewApplications() {
         //to be implemented
     }
@@ -20,79 +23,59 @@ public class Admin extends User{
      * @param levels an array list of the levels that can recieve the scholarship
      * @return The newly created scholarship is returned as an output
 	 */
-    public Scholarship createScholarship(String name, String dueDate, double amt, int recipients, ArrayList<String> levels) {
-        Scanner scan = new Scanner(System.in);
-        /* String name;
-        String dueDate;
-        double amt;
-        int recipients;
-        ArrayList<String> levels = new ArrayList<String>(); */
-
-        //Updated code starts here 02/26/2019
+    public Scholarship createScholarship(String name, String dueDate, double amt, int recipients, ArrayList<String> levels) throws Exception{
+    
         Scholarship s = new Scholarship(name);
         s.setDueDate(dueDate);
         s.setAmount(amt);
         s.setRecipients(recipients);
         s.setLevels(levels);
         return s;
-
-        //old code from before 02/26/2019 is below: This code is no longer needed in this class and should be deleted after implementation in the Scholarshipsystem class
-        /*
-        System.out.println("What is the name of the scholarship you wish to create?");
-        name = scan.nextLine();
-        Scholarship scol = new Scholarship(name);
-        int dateGood = 0;
-        while (dateGood == 0){
-            System.out.println("What will the due date of the scholarship be?");
-            dueDate = scan.nextLine();
-            if (Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", dueDate)){
-                scol.setDueDate(dueDate);
-                dateGood = 1;
-            }
-            else{
-                System.out.println("Invalid format. must follow mm/dd/yyyy");
-            }
-        }
-        int amtGood = 0;
-        while (amtGood == 0){
-            System.out.println("How much will the scholarship be worth");
-            try{
-                amt = Double.parseDouble(scan.nextLine());
-                amtGood = 1;
-            }
-            catch(NumberFormatException e){
-                System.out.println("Invalid input. Must be of type double");
-            }
-        }
-        scol.setAmount(amt);
-        int recGood = 0;
-        while (recGood == 0){
-            System.out.println("How many people can recieve this scholarship?");
-            try{
-                recipients = Integer.parseInt(scan.nextLine());
-                recGood = 1;
-            }
-            catch(NumberFormatException e){
-                System.out.println("Invalid input. Must be of type integer");
-            }
-        }
-        scol.setRecipients(recipients);
-        System.out.println("What levels is this scholarship available for?")
-        while (sc.hasNextString()) {
-            int i = scan.nextString();
-            levels.add(i);
-        }
-        scol.setLevels(levels);
-        return scol;
-        */
-
+    
 
     }
     public void modRemovScholarship() {
         //to be implemented
     }
-    public void status() {
-        //to be implemented
+    //returns type int. 1 = closed, 0 = open
+    public int status(Scholarship s) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String cd = dateFormat.format(date);
+        String[] parts = cd.split("/");
+        int cdDay = Integer.parseInt(parts[0]);
+        int cdMonth = Integer.parseInt(parts[1]);
+        int cdYear = Integer.parseInt(parts[2]);
+        String sd = s.getDueDate();
+        String[] parts2 = cd.split("/");
+        int sdDay = Integer.parseInt(parts2[0]);
+        int sdMonth = Integer.parseInt(parts2[1]);
+        int sdYear = Integer.parseInt(parts2[2]);
+        int status = 0;
+
+        if (sdYear < cdYear){
+            status = 1; //closed
+        }
+        else if (sdYear == cdYear){
+            if (sdMonth < cdMonth){
+            status = 1; //closed
+            }
+            else if (sdMonth == cdMonth){
+                if (sdDay < cdDay){
+                status = 1; //closed
+                }
+                else{
+                    status = 0; // open
+                }
+            }
+            else{
+                status = 0; // open
+            }
+        }
+        else{
+            status = 0; //open
+        }
+        return status;
     }
 
 }

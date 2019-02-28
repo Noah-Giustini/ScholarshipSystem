@@ -26,8 +26,8 @@ public class Application{
 	 * Open FileReader stream
 	 * @param inputFileName is the file name given by user on cmd line
 	 */
-	public Application(String nmscholarship, String nmstudent) throws Exception{
-		
+	public Application(String nmscholarship, String nmstudent)throws Exception{
+		try{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
 		
@@ -39,6 +39,9 @@ public class Application{
 		}
 		else{
 			newApplication();
+		}} catch (Exception e){
+
+
 		}		
 	}
 	
