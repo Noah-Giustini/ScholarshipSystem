@@ -86,6 +86,7 @@ public class Student{
      * @return the new application of the student
      */
     public void apply(Scholarship scholarship) {
+        try {
         Scanner scan = new Scanner(System.in);
         Application app = new Application(scholarship.getName(), this.name);
         try {
@@ -100,7 +101,10 @@ public class Student{
         app.setEducationLevel(this.eduLvl);
         this.applications.add(app);
         ScholarshipSystem.applicationList.add(app);
-        
+    } catch (Exception e) {
+        System.out.println("ERROR");
+        System.exit(0);
+    }
 
 
         
@@ -159,12 +163,16 @@ public class Student{
      * @param app application that will be withdrawn
      */
     public void withdrawApplication(Application app) {
+        try {
         this.applications.remove(app);
         Scholarship sch = new Scholarship(app.getScholarship());
         ScholarshipSystem.applicationList.remove(app);
         this.fixPriority();
         System.out.println("Application has been sucessfully withdrawn. ");
-    
+        } catch (Exception e) {
+            System.out.println("ERROR");
+            System.exit(0);
+        }
     }
 
 
@@ -186,6 +194,7 @@ public class Student{
      * @param scholarship scholarship the student will accept
      */
     public void acceptScholarship(Scholarship scholarship) {
+        try {
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you sure you want to accept this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
@@ -196,6 +205,10 @@ public class Student{
         }
         
         scan.close();
+    } catch (Exception e) {
+            System.out.println("ERROR");
+            System.exit(0);
+        }
     }
 
 
@@ -205,6 +218,7 @@ public class Student{
      * @param scholarship scholarship to be declined 
      */
     public void declineScholarship(Scholarship scholarship) {
+        try {
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you sure you want to decline this scholarship. Enter \"y\" for yes or enter anything else to exit");
         String choice = scan.nextLine();
@@ -212,6 +226,10 @@ public class Student{
             scholarship.setChosen(scholarship.getChosen() - 1); // just a placeholder for now
         }
         scan.close();
+    }catch (Exception e) {
+            System.out.println("ERROR");
+            System.exit(0);
+    }
     
     }
 
@@ -244,9 +262,10 @@ public class Student{
      * @param app application to edit
      */
     private void editGPA(Application app){
+        try {
         System.out.println("Your current gpa in the application is: " + app.getGPA());
         Scanner scan = new Scanner(System.in);
-        double newGPA;
+        double newGPA = 0;
         boolean tryAgain = true;
         
         while(tryAgain){
@@ -267,6 +286,10 @@ public class Student{
         }
         app.setGPA(newGPA);
         scan.close();
+    } catch (Exception e) {
+            System.out.println("ERROR");
+            System.exit(0);
+        }
     }
 
 
@@ -276,15 +299,20 @@ public class Student{
      * @param app application to edit
      */
     private void editLevel(Application app){
+        try {
         System.out.println("Your current level is: " + app.getEducationLevel());
         Scanner scan = new Scanner(System.in);
         boolean tryAgain = true;
         System.out.println("What is your current education level?");
-        newEdu = scan.nextLine();
+        String newEdu = scan.nextLine();
         scan.close();
         app.setEducationLevel(newEdu);    
+    
+    } catch(Exception e) {
+        System.out.println("ERROR");
+            System.exit(0);
     }
 
 
-
+    }
 }
