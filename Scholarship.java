@@ -186,6 +186,10 @@ public class Scholarship{
 	}
 	
 	//this needs to be revised!!!!
+	/**
+	* Replaces ArrapList in levels to new education levels
+	* @param newLevels of type ArrayList<String>
+	 */
 	public void setLevels(ArrayList<String> newLevels)throws Exception{
 		
 		this.levels = newLevels;
