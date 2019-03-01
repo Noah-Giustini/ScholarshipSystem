@@ -35,7 +35,7 @@ public class Application{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
 		
-		this.appfile = "Application/Student" + File.separator + nmstudent + File.separator + this.scholarship + " " + this.student + ".txt";
+		this.appfile = "Application\\" + this.scholarship + " " + this.student + ".txt";
 		
 		File f = new File(this.appfile);
 		if(f.exists() && !f.isDirectory()) { 
