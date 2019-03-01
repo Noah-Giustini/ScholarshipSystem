@@ -5,15 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 //The Admin class is used to contain the methods that can be used only by an administrator of the system
-public class Admin extends User{
+public class Admin{
     /**
 	 * view the current applications in the system
 	 * @param allApplications is an ArrayList with type Application that contains the applications in the system
      * @return void
 	 */
-    public void viewApplications(Arraylist<Application> allApplications) {
-        for (i=0; i < allApplications.length; i++){
-            System.out.println(i.toString());
+    public void viewApplications(ArrayList<Application> allApplications) {
+        for (int i=0; i < allApplications.size(); i++){
+            System.out.println(allApplications.get(i).toString());
         }
     }
     /**
@@ -22,10 +22,10 @@ public class Admin extends User{
      * @param a is of type Application and is the application to be confirmed
      * @return void
 	 */
-    public void confirmAward(Scholarship s, Application a) {
+    public void confirmAward(Scholarship s, Application a) throws Exception{
         a.setStatus("Awarded");
-        s.setChosen = s.getChosen()+1;      //we may want to remove this later as it could be better implemented when the student accepts their award
-        String name = s.getName;
+        s.setChosen(s.getChosen()+1);      
+        String name = s.getName();
         String student = a.getStudent();
         System.out.println("The scholarship " + name + " has been granted to student " + student + " and is awaiting their acceptance.");
     }
@@ -35,11 +35,11 @@ public class Admin extends User{
      * @param a is of type Application and is the application to be rejected
      * @return void
 	 */
-    public void rejectApplication(Scholarship s, Application a) {
+    public void rejectApplication(Scholarship s, Application a) throws Exception{
         a.setStatus("Rejected");
-        String name = s.getName;
+        String name = s.getName();
         String student = a.getStudent();
-        System.out.println("The application from student" + student + " has been rejected for the scholarship " + scholarship);
+        System.out.println("The application from student" + student + " has been rejected for the scholarship " + name);
     }
     /**
 	 * Create a new scholarship to be entered in the system
