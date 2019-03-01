@@ -56,14 +56,14 @@ public class Admin{
         Date date = new Date();
         String cd = dateFormat.format(date);
         String[] parts = cd.split("/");
-        int cdDay = Integer.parseInt(parts[0]);
-        int cdMonth = Integer.parseInt(parts[1]);
-        int cdYear = Integer.parseInt(parts[2]);
+        int cdDay = Integer.parseInt(parts[0]); //current day
+        int cdMonth = Integer.parseInt(parts[1]); //current month
+        int cdYear = Integer.parseInt(parts[2]); //current year
         String sd = s.getDueDate();
         String[] parts2 = cd.split("/");
-        int sdDay = Integer.parseInt(parts2[0]);
-        int sdMonth = Integer.parseInt(parts2[1]);
-        int sdYear = Integer.parseInt(parts2[2]);
+        int sdDay = Integer.parseInt(parts2[0]); //due date day
+        int sdMonth = Integer.parseInt(parts2[1]); //due date month
+        int sdYear = Integer.parseInt(parts2[2]); //due date year
         boolean status = false;
 
         if (sdYear < cdYear){
