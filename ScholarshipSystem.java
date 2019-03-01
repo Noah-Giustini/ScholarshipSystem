@@ -14,7 +14,9 @@ public class ScholarshipSystem {
  */
     public static void main(String[] args) {
         Scholarship.startUp();
-        Application.startUp();
+        if (scholarshipList.size() != 0){
+			Application.startUp();
+		}
         //Application.startUp();
         //asks for login information and validates that input
         System.out.println("Welcome to the UC Scholarship system! Words that appear in <pointed braces> are commands that you can enter\n(do not type the braces)."

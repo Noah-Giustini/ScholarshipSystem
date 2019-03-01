@@ -35,7 +35,7 @@ public class Application{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
 		
-		this.appfile = "Application\\" + this.scholarship + " " + this.student + ".txt";
+		this.appfile = "Applications\\" + this.scholarship + " " + this.student + ".txt";
 		
 		File f = new File(this.appfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -300,7 +300,7 @@ public class Application{
 	 * Loads all application files into the applicationList in ScholarshipSystem class
 	 */
 	public static void startUp() {
-		File folder = new File("Applications");
+		File folder = new File("Applications\\");
 		File[] listOfFiles = folder.listFiles();
 		for(File a : listOfFiles){
 			if(a.isFile()){
