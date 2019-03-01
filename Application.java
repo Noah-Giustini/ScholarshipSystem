@@ -35,7 +35,7 @@ public class Application{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
 		
-		this.appfile = "Student" + File.separator + "jim0" + File.separator + this.scholarship + " " + this.student + ".txt";
+		this.appfile = "Application/Student" + File.separator + nmstudent + File.separator + this.scholarship + " " + this.student + ".txt";
 		
 		File f = new File(this.appfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -295,5 +295,27 @@ public class Application{
 		 
 		return this.scholarship + ": " + this.student + ", Date Submitted: " + this.date + ", GPA: " + this.gpa + ", Education Level: " + this.edulvl + ", Priority: " + this.priority + ", Status: " + this.status;
 	}
-	
+
+	/**
+	 * Loads all application files into the applicationList in ScholarshipSystem class
+	 */
+	public static void startUp() {
+		File folder = new File("Applications");
+		File[] listOfFiles = folder.listFiles();
+		for(File a : listOfFiles){
+			if(a.isFile()){
+				String name = a.getName().substring(0, (a.getName().length() - 4));	//takes away the .txt
+				
+				String schName = name.substring(0, name.length() - 3);	//gets scholarship name
+				name = name.substring(name.length() - 3);	//gets jim
+				try {
+					//TODO: handle exception
+				Application app = new Application(schName, name);
+				ScholarshipSystem.applicationList.add(app);
+				}
+				catch (Exception e){
+
+				}
+			}	
+		}
 }
