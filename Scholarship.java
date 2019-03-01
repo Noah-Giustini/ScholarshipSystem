@@ -20,6 +20,7 @@ public class Scholarship{
 	private ArrayList<String> levels = new ArrayList<String>();
 
 	/**
+	* Constructor.
 	* Scholarship constructor that creates a new scholarship object and file
 	* or load an old scholarship if a scholarhip file with the given name already exists.
 	* @param schname is the name of the scholarship given by the user
@@ -40,6 +41,7 @@ public class Scholarship{
 	}
 	
 	/**
+	* Constructor.
 	* Scholarship constructor used when loading in all scholarships to the ScholarshipSystem.
 	 */
 	public Scholarship() {		
