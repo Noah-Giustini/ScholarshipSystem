@@ -24,8 +24,11 @@ public class Application{
 
 	/**
 	 * Constructor.
-	 * Open FileReader stream
-	 * @param inputFileName is the file name given by user on cmd line
+	 * Loads an application for given scholarship and student if the file exists
+	 * or generates a new application if a file for that application does not exist.
+	 * Names file the student's name followed by the scholarship name.
+	 * @param mnscholarship name of scholarship of type String
+	 * @param mnstudent name of student of type String
 	 */
 	public Application(String nmscholarship, String nmstudent)throws Exception{
 		try{
@@ -47,36 +50,65 @@ public class Application{
 	}
 	
 	//Getters
+	
+	/**
+	 * Returns name of scholarship being applied for
+	 * @return Name or scholarship of type String
+	 */
 	public String getScholarship(){
 		
 		return this.scholarship;
 	}
 	
+	/**
+	 * Returns name of student applying for scholarship
+	 * @return Name or student of type String
+	 */
 	public String getStudent(){
 		
 		return this.student;
 	}
 	
+	/**
+	 * Returns date application was last edited
+	 * @return Date of type String
+	 */
 	public String getDate(){
 		
 		return this.date;
 	}
 	
+	/**
+	 * Returns gpa of scholarship applicant
+	 * @return GPA of type double
+	 */
 	public double getGPA(){
 		
 		return this.gpa;
 	}
 	
+	/**
+	 * Returns education level of scholarship applicant
+	 * @return Education level of type String
+	 */
 	public String getEducationLevel(){
 		
 		return this.edulvl;
 	}
 	
+	/**
+	 * Returns status of application; pending, accepted, rejected.
+	 * @return Status of type String
+	 */
 	public String getStatus(){
 		
 		return this.status;
 	}
 	
+	/**
+	 * Returns priority student has selected for the scholarship
+	 * @return Priority of type int
+	 */
 	public int getPriority(){
 		
 		return this.priority;
@@ -85,7 +117,10 @@ public class Application{
 	
 	//Setters
 	
-	//will only change date if given in correct format: 00/00/0000
+	/**
+	 * Changes date if given in correct format: 00/00/0000
+	 * @param newDate of type String
+	 */
 	public void setDate(String newDate)throws Exception{
 		
 		if (Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", newDate)){
@@ -94,8 +129,11 @@ public class Application{
 		}
 	
 	}
-	
-	//will only change if gpa given is a postive number and is 4.0 or less
+
+	/**
+	 * Changes gpa given is a postive number and is 4.0 or less
+	 * @param newGPA of type double
+	 */
 	public void setGPA(double newGPA)throws Exception{
 		
 		if ((newGPA >= 0) && (newGPA <= 4.0)){
@@ -106,19 +144,30 @@ public class Application{
 
 	}
 	
+	/**
+	 * Changes education level
+	 * @param newEduLvl of type String
+	 */
 	public void setEducationLevel(String newEduLvl)throws Exception{
 		
 		this.edulvl = newEduLvl;
 		overWriteLine("Education Level", newEduLvl);
 	}
 	
+	/**
+	 * Changes status of application
+	 * @param newStatus of type String
+	 */
 	public void setStatus(String newStatus)throws Exception{
 		
 		this.status = newStatus;
 		overWriteLine("Status", newStatus);
 	}
 	
-	//will only change if number given is a natural number
+	/**
+	 * Changes priority if natural number is given
+	 * @param newPriority of type int
+	 */
 	public void setPriority(int newPriority)throws Exception{
 		
 		if (newPriority >= 0){
@@ -129,7 +178,12 @@ public class Application{
 	
 	}
 	
-	
+	/**
+	* Changes a line in scholarship file given the name of the parameter that needs to be 
+	* changed and the new value for that parameter
+	* @param tag is a String of the name of the parameter to be changed
+	* @param newtext is a String of the value to change to parameter's value to
+	 */
 	public void overWriteLine(String tag, String newtext) throws Exception{
 		
 		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.scholarship +  " " + this.student + ".temp")));
@@ -162,6 +216,9 @@ public class Application{
 	
 	//load and generate applications
 	
+	/**
+	* Loads application from a file into a application object
+	 */
 	private void loadApplication() throws Exception{
 		
 		BufferedReader br = new BufferedReader(new FileReader(this.appfile));
@@ -195,6 +252,10 @@ public class Application{
 	}
 	
 	
+	/**
+	* Create a new file for an application. Names file the given name of the application and sets 
+	* basic file format. 
+	 */
 	private void newApplication() throws Exception{
 		
 		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.appfile)));
@@ -226,6 +287,10 @@ public class Application{
 		
 	}
 	
+	/**
+	* Overrides toString method. For use in the command line implementation of Scholarship System
+	* @return Information from application in type String
+	 */
 	public String toString(){
 		 
 		return this.scholarship + ": " + this.student + ", Date Submitted: " + this.date + ", GPA: " + this.gpa + ", Education Level: " + this.edulvl + ", Priority: " + this.priority + ", Status: " + this.status;
