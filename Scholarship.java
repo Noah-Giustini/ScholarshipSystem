@@ -20,13 +20,7 @@ public class Scholarship{
 
 	private ArrayList<String> levels = new ArrayList<String>();
 
-	
 
-	/**
-	 * Constructor.
-	 * Open FileReader stream
-	 * @param inputFileName is the file name given by user on cmd line
-	 */
 	public Scholarship(String schname) throws Exception{
 		
 		this.name = schname;
