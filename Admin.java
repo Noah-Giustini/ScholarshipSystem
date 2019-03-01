@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 //The Admin class is used to contain the methods that can be used only by an administrator of the system
-public class Admin{
+public class Admin extends User{
     /**
 	 * view the current applications in the system
 	 * @param allApplications is an ArrayList with type Application that contains the applications in the system
@@ -16,11 +16,30 @@ public class Admin{
             System.out.println(i.toString());
         }
     }
-    public void confirmAward() {
-        //to be implemented
+    /**
+	 * confirm an application
+	 * @param s is of type Scholarship and is the scholarship that the students application is associated with
+     * @param a is of type Application and is the application to be confirmed
+     * @return void
+	 */
+    public void confirmAward(Scholarship s, Application a) {
+        a.setStatus("Awarded");
+        s.setChosen = s.getChosen()+1;      //we may want to remove this later as it could be better implemented when the student accepts their award
+        String name = s.getName;
+        String student = a.getStudent();
+        System.out.println("The scholarship " + name + " has been granted to student " + student + " and is awaiting their acceptance.");
     }
-    public void rejectApplication() {
-        //to be implemented
+    /**
+	 * reject an application
+	 * @param s is of type Scholarship and is the scholarship that the students application is associated with
+     * @param a is of type Application and is the application to be rejected
+     * @return void
+	 */
+    public void rejectApplication(Scholarship s, Application a) {
+        a.setStatus("Rejected");
+        String name = s.getName;
+        String student = a.getStudent();
+        System.out.println("The application from student" + student + " has been rejected for the scholarship " + scholarship);
     }
     /**
 	 * Create a new scholarship to be entered in the system
