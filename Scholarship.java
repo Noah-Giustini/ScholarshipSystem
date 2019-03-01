@@ -29,7 +29,7 @@ public class Scholarship{
 		
 		this.name = schname;
 		
-		this.schfile = "Scholarships" + File.separator + schname + ".txt";
+		this.schfile = "Scholarships\\" + schname + ".txt";
 		
 		File f = new File(this.schfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -209,7 +209,9 @@ public class Scholarship{
 	 */
 	private void overWriteLine(String tag, String newtext) throws Exception{
 		
-		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.name + ".temp")));
+		String tmpfile = "Scholarships\\" + this.name + ".temp";
+		
+		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(tmpfile)));
 		BufferedReader br = new BufferedReader(new FileReader(this.schfile));
 		
 		String line;
@@ -230,9 +232,9 @@ public class Scholarship{
 		File f = new File(this.schfile);
 		boolean b = f.delete();
 		File f1 = new File(this.schfile);
-		File f2 = new File(this.name + ".temp");
+		File f2 = new File(tmpfile);
 		b = f2.renameTo(f1);
-		File f3 = new File(this.name + ".temp");
+		File f3 = new File(tmpfile);
 		b = f3.delete();
 	}
 	
