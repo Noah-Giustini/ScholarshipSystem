@@ -14,6 +14,8 @@ public class ScholarshipSystem {
  */
     public static void main(String[] args) {
         Scholarship.startUp();
+        Application.startUp();
+        //Application.startUp();
         //asks for login information and validates that input
         System.out.println("Welcome to the UC Scholarship system! Words that appear in <pointed braces> are commands that you can enter\n(do not type the braces)."
                             + "\n\nWould you like to log in as <student> or <admin>? (Please enter student or admin without the pointed braces)");
@@ -276,8 +278,8 @@ public class ScholarshipSystem {
                 //currentAdmin.editScholarship(desiredScholarship);   //TODO add this edit method to admin class
                 break;
             case "view applications":
-                System.out.println("ENTERED VIEW APPLICATIONS. FUNCTIONALITY NOT YET FINISED!");
-                //adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
+                //System.out.println("ENTERED VIEW APPLICATIONS. FUNCTIONALITY NOT YET FINISED!");
+                adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
                 break;
 
         }
@@ -291,9 +293,11 @@ public class ScholarshipSystem {
      * @param desiredScholarship The name of the scholarship the user has selected and wants to manage
      */
     private static void adminApplicationAwardPortal(Admin currentAdmin, Scanner scan, String desiredScholarship) {
-        //currentAdmin.viewApplications(desiredScholarship);      //TODO implement this method in admin class
-        currentAdmin.viewApplications();
-        //TODO allow admin to see a brief view of an application (student name, grade, level?) and choose to see a detailed view (full application)
+                                                                          //TODO implement this method in admin class
+        currentAdmin.viewApplications(applicationList); //prints all applications
+        
+        //TODO make sure the applicationList arraylist has applications loaded into it at admin startup
+        //
     }
 
     /**
