@@ -42,6 +42,10 @@ public class Scholarship{
 		}		
 	}
 	
+	public Scholarship(){
+		
+	}
+
 	//Getters
 	public String getName(){
 		

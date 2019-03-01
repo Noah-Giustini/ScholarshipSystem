@@ -178,7 +178,7 @@ public class ScholarshipSystem {
 
         Boolean isValidScholarship = false;
         String desiredScholarshipName = "";
-        Scholarship desiredScholarship =  new Scholarship("PLACEHOLDER");   //maybe make a default/placeholder scholarship or change code here
+        Scholarship desiredScholarship =  new Scholarship();   //maybe make a default/placeholder scholarship or change code here
         //check that the name the user entered is an existing scholarship
         while(isValidScholarship == false) {
             desiredScholarshipName = scan.nextLine().toLowerCase();
@@ -210,7 +210,7 @@ public class ScholarshipSystem {
 
         switch(userInput) {     //placed in switch in case we want to expand the student's commands here later
             case "apply":
-                currentStudent.apply(desiredScholarship);
+                currentStudent.apply(desiredScholarship, scan);
                 break;
         }
      } catch (Exception e) {

@@ -8,7 +8,7 @@ public class Student{
     /**
      * All the applications the student has made
      */
-    private ArrayList<Application> applications;        //TODO make method to get this list of applications
+    private ArrayList<Application> applications = new ArrayList<Application>();        //TODO make method to get this list of applications
     private boolean hasGottenScholarship = false;
     private String eduLvl = "Undergrad";
     private String name;
@@ -85,21 +85,26 @@ public class Student{
      * @param scholarship the scholarship the student will apply for
      * @return the new application of the student
      */
-    public void apply(Scholarship scholarship) {
+    public void apply(Scholarship scholarship, Scanner scan) {
         try {
-        Scanner scan = new Scanner(System.in);
         Application app = new Application(scholarship.getName(), this.name);
         try {
+            System.out.println("Please enter a priority. ");
             app.setPriority(scan.nextInt());
         } catch (Exception e) {
             System.out.println("invalid priority, set to 1");
             app.setPriority(1);
         }
         app.setGPA(this.GPA);
+        System.out.println("gd");
         app.setDate("01/02/2019");
+        System.out.println("gd");
         app.setStatus("pending");
+        System.out.println("gd");
         app.setEducationLevel(this.eduLvl);
+        System.out.println("gd");
         this.applications.add(app);
+        System.out.println("gd");
         ScholarshipSystem.applicationList.add(app);
     } catch (Exception e) {
         System.out.println("ERROR");
@@ -182,7 +187,7 @@ public class Student{
      */
     public void viewScholarships(ArrayList<Scholarship> scholars){
         for (Scholarship s : scholars){
-            s.toString();
+            System.out.println(s.toString());
         }
 
 
