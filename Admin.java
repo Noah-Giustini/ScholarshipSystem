@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Admin{
-    public void viewApplications() {
-        //to be implemented
+    public void viewApplications(Arraylist<Application> allApplications) {
+        for (i=0; i < allApplications.length; i++){
+            System.out.println(i.toString());
+        }
     }
     public void confirmAward() {
         //to be implemented
