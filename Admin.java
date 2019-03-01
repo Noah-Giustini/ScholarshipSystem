@@ -4,7 +4,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+//The Admin class is used to contain the methods that can be used only by an administrator of the system
 public class Admin{
+    /**
+	 * view the current applications in the system
+	 * @param allApplications is an ArrayList with type Application that contains the applications in the system
+     * @return void
+	 */
     public void viewApplications(Arraylist<Application> allApplications) {
         for (i=0; i < allApplications.length; i++){
             System.out.println(i.toString());
@@ -39,8 +45,13 @@ public class Admin{
     public void modRemovScholarship() {
         //to be implemented
     }
-    //returns type int. 1 = closed, 0 = open
-    public int status(Scholarship s) {
+    /**
+	 * Check the status of a scholarship
+	 * @param s is of type Scholarship and is the scholarship we wish to check the status of
+     * @return status is returned with type boolean. True us returned indicating the scholarship is closed,
+     * false is returned indicating the scholarship is still pending
+	 */
+    public boolean status(Scholarship s) {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         String cd = dateFormat.format(date);
@@ -53,29 +64,29 @@ public class Admin{
         int sdDay = Integer.parseInt(parts2[0]);
         int sdMonth = Integer.parseInt(parts2[1]);
         int sdYear = Integer.parseInt(parts2[2]);
-        int status = 0;
+        boolean status = false;
 
         if (sdYear < cdYear){
-            status = 1; //closed
+            status = true; //closed
         }
         else if (sdYear == cdYear){
             if (sdMonth < cdMonth){
-            status = 1; //closed
+            status = true; //closed
             }
             else if (sdMonth == cdMonth){
                 if (sdDay < cdDay){
-                status = 1; //closed
+                status = true; //closed
                 }
                 else{
-                    status = 0; // open
+                    status = false; // open
                 }
             }
             else{
-                status = 0; // open
+                status = false; // open
             }
         }
         else{
-            status = 0; //open
+            status = false; //open
         }
         return status;
     }
