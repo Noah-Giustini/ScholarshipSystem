@@ -317,7 +317,7 @@ public class ScholarshipSystem {
         scholarshipDescription = scan.nextLine();
         //scan.next();
 
-        System.out.print("\nPlease enter the deadline of the scholarship (as numbers, MMDDYYYY): ");
+        System.out.print("\nPlease enter the deadline of the scholarship (as numbers, DD/MM/YYYY): ");
         scholarshipDeadline = scan.nextLine();
         //scan.next();
 
