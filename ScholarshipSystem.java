@@ -276,7 +276,8 @@ public class ScholarshipSystem {
                 //currentAdmin.editScholarship(desiredScholarship);   //TODO add this edit method to admin class
                 break;
             case "view applications":
-                adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
+                System.out.println("ENTERED VIEW APPLICATIONS. FUNCTIONALITY NOT YET FINISED!");
+                //adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
                 break;
 
         }
