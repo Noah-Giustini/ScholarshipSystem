@@ -1,21 +1,21 @@
 Scholarship
-test cool n 
+car
 
 Student
-ame
+PLACEHOLDER
 
 GPA
-0.0
+3.0
 
 Education Level
---
+bach1
 
 Date
---
+01/02/2019
 
 Status
---
+pending
 
 Priority
-0
+1
 
