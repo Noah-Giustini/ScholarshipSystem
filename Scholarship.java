@@ -17,10 +17,14 @@ public class Scholarship{
 	private double amount = 0;
 	private int recipients = 0;
 	private int chosen = 0;
-
 	private ArrayList<String> levels = new ArrayList<String>();
 
-
+	/**
+	* Constructor.
+	* Scholarship constructor that creates a new scholarship object and file
+	* or load an old scholarship if a scholarhip file with the given name already exists.
+	* @param schname is the name of the scholarship given by the user
+	 */
 	public Scholarship(String schname) throws Exception{
 		
 		this.name = schname;
@@ -36,36 +40,63 @@ public class Scholarship{
 		}		
 	}
 	
-	public Scholarship(){
-		
+	/**
+	* Constructor.
+	* Scholarship constructor used when loading in all scholarships to the ScholarshipSystem.
+	 */
+	public Scholarship() {		
 	}
 
 	//Getters
+	/**
+	* Returns the name of the scholarship
+	* @return name of the scholarship
+	 */
 	public String getName(){
 		
 		return this.name;
 	}
 	
+	/**
+	* Returns the name of the scholarship
+	* @return Name of the scholarship of type String
+	 */
 	public String getDueDate(){
 		
 		return this.duedate;
 	}
 	
+	/**
+	* Returns the amount of money awarded by the scholarship
+	* @return Amount of type double
+	 */
 	public double getAmount(){
 		
 		return this.amount;
 	}
 	
+	/**
+	* Returns the number of recipients a scholarship has
+	* @return Number of recipient of type int
+	 */
 	public int getRecipients(){
 		
 		return this.recipients;
 	}
 	
+	/**
+	* Returns the number of applicants chosen for a scholarship
+	* @return Number of chosen applicants of type int
+	 */
 	public int getChosen(){
 		
 		return this.chosen;
 	}
 	
+	/**
+	* Returns eligible education levels for a scholarship
+	* @return ArrayList of levels of type ArrayList<String>
+	 */
 	public ArrayList<String> getLevels(){
 		
 		return this.levels;
@@ -73,9 +104,12 @@ public class Scholarship{
 	
 	
 	//Setters
-	
-	//will only change name if new one is given
-	//if blank name given name is not changed
+
+	/**
+	* Changes name of scholarship if new one is given
+	* if blank name is given it will not be changed
+	* @param newName should be a String to change name to
+	 */
 	public void setName(String newName) throws Exception{
 		
 		if (!(newName.trim().equals(""))){
@@ -95,7 +129,10 @@ public class Scholarship{
 		}
 	}
 	
-	//will only change due date if given in correct format: 00/00/0000
+	/**
+	* Changes due date if given in correct format: 00/00/0000
+	* @param newDueDate should be a String in correct format: 00/00/0000
+	 */
 	public void setDueDate(String newDueDate)throws Exception{
 		
 		if (Pattern.matches("\\d\\d/\\d\\d/\\d\\d\\d\\d", newDueDate)){
@@ -106,6 +143,10 @@ public class Scholarship{
 	}
 	
 	//will only change if amount given is a postive number
+	/**
+	* Changes amount if it is a positive number
+	* @param newAmount should be a postive double
+	 */
 	public void setAmount(double newAmount)throws Exception{
 		
 		if (newAmount >= 0){
@@ -116,7 +157,10 @@ public class Scholarship{
 
 	}
 	
-	//will only change if number given is a natural number
+	/**
+	* Changes number of recipients if given a natural number
+	* @param newRecipients should be a natural number of type int
+	 */
 	public void setRecipients(int newRecipients)throws Exception{
 		
 		if (newRecipients >= 0){
@@ -127,7 +171,10 @@ public class Scholarship{
 
 	}
 	
-	//will only change if number given is a natural number
+	/**
+	* Changes number of recipients chosen if given a natural number
+	* @param newChosen should be a natural number of type int
+	 */
 	public void setChosen(int newChosen)throws Exception{
 		
 		if (newChosen >= 0){
@@ -150,7 +197,12 @@ public class Scholarship{
 		overWriteLine("Education Level", txt);
 	}	
 	
-	
+	/**
+	* Changes a line in scholarship file given the name of the parameter that needs to be 
+	* changed and the new value for that parameter
+	* @param tag is a String of the name of the parameter to be changed
+	* @param newtext is a String of the value to change to parameter's value to
+	 */
 	private void overWriteLine(String tag, String newtext) throws Exception{
 		
 		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.name + ".temp")));
@@ -183,6 +235,9 @@ public class Scholarship{
 	
 	//load and generate scholarships
 	
+	/**
+	* Loads scholarship from a file into a scholarship object
+	 */
 	private void loadScholarship() throws Exception{
 		
 		BufferedReader br = new BufferedReader(new FileReader(this.schfile));
@@ -219,7 +274,10 @@ public class Scholarship{
 		br.close();	
 	}
 	
-	
+	/**
+	* Create a new file for a scholarship. Names file the given name of the scholarship and sets 
+	* basic file format. 
+	 */
 	private void newScholarship() throws Exception{
 		
 		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.schfile)));
@@ -252,6 +310,10 @@ public class Scholarship{
 		
 	}
 	
+	/**
+	* Overrides toString method. For use in the command line implementation of Scholarship System
+	* @return Information from scholarship in type String
+	 */
 	public String toString(){
 		
 		String EduLvls = "";
@@ -264,7 +326,10 @@ public class Scholarship{
 		
 		return this.name + ", Due: " + this.duedate + ", Amount: " + this.amount + "$, Recipient(s): " + this.recipients + ", Recipient(s) Chosen: " + this.chosen + ", Education Levels: " + EduLvls;
 	}
-
+	
+	/**
+	* Reads in all scholarships and adds them to the scholarshipList in the ScholarshipSystem
+	 */
 	public static void startUp(){
 		File folder = new File("Scholarships");
 		File[] listOfFiles = folder.listFiles();
