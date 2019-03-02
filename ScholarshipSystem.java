@@ -101,7 +101,7 @@ public class ScholarshipSystem {
 
         //printFakeApplication(); //TODO: REMOVE THIS LINE WHEN STUDENT AND APPLICATION CLASS WORK
 
-        System.out.println("\nYou can <view>, <edit>, <withdraw>, <accept> or <decline> an application.");
+        System.out.println("\nYou can <view>"); //", <edit>, <withdraw>, <accept> or <decline> an application.");
 
         String userInput = "";
         Boolean isValidCommand = false;
@@ -256,7 +256,7 @@ public class ScholarshipSystem {
             }
         }
 
-        System.out.println("You may <remove>, <edit> or <view applications> on the chosen " + desiredScholarship + " Scholarship.");
+        System.out.println("You may <view applications> on the chosen " + desiredScholarship + " Scholarship.");
 
         String userInput = "";
 
@@ -271,14 +271,14 @@ public class ScholarshipSystem {
         }
 
         switch(userInput) {
-            case "remove":
+           /* case "remove":
                 System.out.println("ENTERED REMOVE. FUNCTIONALITY NOT YET FINISED!");
                 //currentAdmin.modRemovScholarship(desiredScholarship); //TODO allow system to pass scholarship name to remove it and update scholarship list
                 break;
             case "edit":
                 System.out.println("ENTERED EDIT. FUNCTIONALITY NOT YET FINISED!");
                 //currentAdmin.editScholarship(desiredScholarship);   //TODO add this edit method to admin class
-                break;
+                break; */
             case "view applications":
                 //System.out.println("ENTERED VIEW APPLICATIONS. FUNCTIONALITY NOT YET FINISED!");
                 adminApplicationAwardPortal(currentAdmin, scan, desiredScholarship);
