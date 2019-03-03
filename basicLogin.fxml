@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="120.0" layoutY="20.0" text="University Scholarship System">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+      </Label>
+      <Pane layoutX="215.0" layoutY="138.0" prefHeight="366.0" prefWidth="366.0">
+         <children>
+            <Label layoutX="74.0" layoutY="151.0" text="Username:" />
+            <Label layoutX="74.0" layoutY="199.0" text="Password:" />
+            <TextField fx:id="usernameInputField" layoutX="143.0" layoutY="147.0" promptText="username" />
+            <PasswordField fx:id="passwordInputField" layoutX="143.0" layoutY="195.0" promptText="password" />
+            <Button layoutX="157.0" layoutY="247.0" mnemonicParsing="false" text="Sign In" />
+            <ImageView fitHeight="124.0" fitWidth="123.0" layoutX="122.0">
+               <image>
+                  <Image url="@../../Documents/no-image.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="60.0" layoutY="310.0" text="Label" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
