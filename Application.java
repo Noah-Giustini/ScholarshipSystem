@@ -10,7 +10,9 @@ import java.io.FileWriter;
 import java.io.FileReader;
 
 public class Application{
-	
+
+
+	private boolean submit = false;
 	private String scholarship = "--";
 	private String student = "--";
 	private String appfile = "--";
@@ -30,12 +32,18 @@ public class Application{
 	 * @param mnscholarship name of scholarship of type String
 	 * @param mnstudent name of student of type String
 	 */
-	public Application(String nmscholarship, String nmstudent)throws Exception{
+	public Application(String nmscholarship, String nmstudent, Boolean submit)throws Exception{
 		try{
 		this.scholarship = nmscholarship;
 		this.student = nmstudent;
+		this.submit = submit;
 		
-		this.appfile = "Applications\\" + this.scholarship + this.student + ".txt";
+		if (this.submit){
+			this.appfile = "Applications\\" + this.scholarship + this.student + ".txt";
+		}
+		else{
+			this.appfile = "ApplicationSaves\\" + this.scholarship + this.student + ".txt";
+		}
 		
 		File f = new File(this.appfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -299,24 +307,24 @@ public class Application{
 	/**
 	 * Loads all application files into the applicationList in ScholarshipSystem class
 	 */
-	public static void startUp() {
-		File folder = new File("Applications\\");
-		File[] listOfFiles = folder.listFiles();
-		for(File a : listOfFiles){
-			if(a.isFile()){
-				String name = a.getName().substring(0, (a.getName().length() - 4));	//takes away the .txt
+//	public static void startUp() {
+	//	File folder = new File("Applications\\");
+	//	File[] listOfFiles = folder.listFiles();
+//for(File a : listOfFiles){
+		//	if(a.isFile()){
+		//		String name = a.getName().substring(0, (a.getName().length() - 4));	//takes away the .txt
 				
-				String schName = name.substring(0, name.length() - 3);	//gets scholarship name
-				name = name.substring(name.length() - 3);	//gets jim
-				try {
+		//		String schName = name.substring(0, name.length() - 3);	//gets scholarship name
+		//		name = name.substring(name.length() - 3);	//gets jim
+			//	try {
 					//TODO: handle exception
-				Application app = new Application(schName, name);
-				ScholarshipSystem.applicationList.add(app);
-				}
-				catch (Exception e){
+//Application app = new Application(schName, name);
+			//	ScholarshipSystem.applicationList.add(app);
+			//	}
+			//	catch (Exception e){
 
-				}
-			}	
-		}
-	}
+			//	}
+			//}	
+	//	}
+	//}
 }

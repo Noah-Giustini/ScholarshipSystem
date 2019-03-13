@@ -10,7 +10,8 @@ import java.io.FileWriter;
 import java.io.FileReader;
 
 public class Scholarship{
-
+	
+	private boolean submit = false;
 	private String name = "--";
 	private String schfile = "--";
 	private String duedate = "--";
@@ -25,11 +26,18 @@ public class Scholarship{
 	* or load an old scholarship if a scholarhip file with the given name already exists.
 	* @param schname is the name of the scholarship given by the user
 	 */
-	public Scholarship(String schname) throws Exception{
+	public Scholarship(String schname, boolean submit) throws Exception{
 		
 		this.name = schname;
+		this.submit = submit;
 		
-		this.schfile = "Scholarships\\" + schname + ".txt";
+		if (this.submit){
+			this.schfile = "Scholarships\\" + schname + ".txt";
+		}
+		else{
+			this.schfile = "ScholarshipSaves\\" + schname + ".txt";
+		}
+			
 		
 		File f = new File(this.schfile);
 		if(f.exists() && !f.isDirectory()) { 
@@ -112,10 +120,17 @@ public class Scholarship{
 	 */
 	public void setName(String newName) throws Exception{
 		
+		String newschfile;
+		
 		if (!(newName.trim().equals(""))){
 			this.name = newName;
-			String newschfile = this.name + ".txt";
 			
+			if (this.submit){
+				newschfile = "Scholarships\\" + this.name + ".txt";
+			}
+			else {
+				newschfile = "ScholarshipSaves\\" + this.name + ".txt";
+			}
 			
 			File f1 = new File(newschfile);
 			File f2 = new File(this.schfile);
@@ -209,7 +224,10 @@ public class Scholarship{
 	 */
 	private void overWriteLine(String tag, String newtext) throws Exception{
 		
-		String tmpfile = "Scholarships\\" + this.name + ".temp";
+		String tmpfile;
+		
+		tmpfile = "Scholarships\\" + this.name + ".temp";
+
 		
 		PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(tmpfile)));
 		BufferedReader br = new BufferedReader(new FileReader(this.schfile));
@@ -336,23 +354,23 @@ public class Scholarship{
 	/**
 	* Reads in all scholarships and adds them to the scholarshipList in the ScholarshipSystem
 	 */
-	public static void startUp(){
-		File folder = new File("Scholarships");
-		File[] listOfFiles = folder.listFiles();
-		for(File a : listOfFiles){
-			if(a.isFile()){
-				String name = a.getName().substring(0, (a.getName().length() - 4));
-				try {
-					//TODO: handle exception
-				Scholarship sch = new Scholarship(name);
-				ScholarshipSystem.scholarshipList.add(sch);
-				}
-				catch (Exception e){
+	//public static void startUp(){
+		//File folder = new File("Scholarships");
+		//File[] listOfFiles = folder.listFiles();
+		//for(File a : listOfFiles){
+		//	if(a.isFile()){
+//String name = a.getName().substring(0, (a.getName().length() - 4));
+		//		try {
+//TODO: handle exception
+		//		Scholarship sch = new Scholarship(name);
+//ScholarshipSystem.scholarshipList.add(sch);
+//
+//catch (Exception e){
 
-				}
-			}	
-		}
-	}
+//
+			//}	
+		//}
+	//}
 	
 }
 	

@@ -6,7 +6,7 @@ public class TestScholarship{
 
 		System.out.println("ok");
 
-		Scholarship s1 = new Scholarship("test scholarship");
+		Scholarship s1 = new Scholarship("test scholarship", true);
 		
 		s1.setAmount(23.3);
 		
@@ -19,7 +19,7 @@ public class TestScholarship{
 		
 		s1.setLevels(lvl);
 		
-		Scholarship s2 = new Scholarship("Athletics Scholarship");
+		Scholarship s2 = new Scholarship("Athletics Scholarship", false);
 		
 		
 		s2.setName("New Ath SCholr");
@@ -28,11 +28,11 @@ public class TestScholarship{
 		
 		s2.setDueDate("cool");
 		
-		Scholarship s3 = new Scholarship("tester");
+		Scholarship s3 = new Scholarship("tester", false);
 		
 		System.out.println(s3.getRecipients());
 		
-		Application a1 = new Application("test", "cool name");
+		Application a1 = new Application("test", "cool name", false);
 		
 		a1.setPriority(1);
 		
