@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdditionalScenes.CreateScholarshipFXMLController">
+  <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button fx:id="buttonBack" mnemonicParsing="false" onMouseClicked="#backFromScholarshipCreator" text="Back">
+               <font>
+                  <Font name="Georgia" size="11.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+    <SplitPane dividerPositions="0.23162583518930957" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane>
+          <children>
+                  <ImageView fitHeight="551.0" fitWidth="205.0" layoutY="1.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@destop-wallpaper-February16-phone.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="56.0" fitWidth="186.0" layoutX="10.0" layoutY="48.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@pink-marble-texture-background-abstract-marble-texture-natural-patterns_41389-205.jpg" />
+                     </image>
+                  </ImageView>
+            <Label alignment="CENTER" layoutX="7.0" layoutY="62.0" minWidth="60.0" prefHeight="27.0" prefWidth="186.0" style="&#10;" text="Create Scholarship" textAlignment="CENTER" textFill="#574753" wrapText="false">
+              <font>
+                <Font name="Georgia Bold" size="18.0" fx:id="x1" />
+              </font>
+            </Label>
+                  <Button fx:id="buttonSaveProgress" layoutX="51.0" layoutY="477.0" mnemonicParsing="false" onMouseClicked="#handleSaveScholarship" text="Save Progress" textFill="#574753">
+                     <font>
+                        <Font name="Georgia" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="buttonSubmitScholarship" layoutX="37.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#handleSubmitScholarship" text="Submit Scholarship" textFill="#574753">
+                     <font>
+                        <Font name="Georgia" size="13.0" />
+                     </font>
+                  </Button>
+          </children>
+        </AnchorPane>
+        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+          <content>
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="667.0">
+              <children>
+                        <ImageView fitHeight="702.0" fitWidth="677.0" layoutY="4.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@pink-marble-texture-background-abstract-marble-texture-natural-patterns_41389-205.jpg" />
+                           </image>
+                        </ImageView>
+                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" textAlignment="CENTER" wrapText="false" />
+                        <TextField fx:id="txtEnterSchName" layoutX="14.0" layoutY="15.0" prefHeight="31.0" prefWidth="244.0" promptText="Enter Scholarship Name">
+                           <font>
+                              <Font name="Georgia" size="19.0" />
+                           </font>
+                        </TextField>
+                        <TextArea fx:id="txtSchDescription" layoutX="14.0" layoutY="93.0" prefHeight="125.0" prefWidth="545.0" />
+                        <Label layoutX="14.0" layoutY="64.0" text="Scholarship Description :">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="chkGPA" layoutX="14.0" layoutY="225.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="69.0" text="GPA">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="14.0" layoutY="264.0" text="Due Date : ">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dateGetter" layoutX="93.0" layoutY="261.0" />
+                        <Label layoutX="13.0" layoutY="298.0" text="Amount : ">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtAmount" layoutX="93.0" layoutY="295.0" promptText="\$" />
+                        <Label layoutX="-20.0" layoutY="334.0" text="        Number of Recipients : ">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtNumRecipients" layoutX="179.0" layoutY="331.0" prefHeight="25.0" prefWidth="43.0" />
+                        <Label layoutX="14.0" layoutY="367.0" text="Select Education Levels : ">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="chkbach" layoutX="19.0" layoutY="393.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Bachelor's">
+                           <font>
+                              <Font name="Georgia" size="13.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="chkmaster" layoutX="115.0" layoutY="393.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" text="Masters">
+                           <font>
+                              <Font name="Georgia" size="13.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="chkDoctorate" layoutX="201.0" layoutY="393.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Doctorate">
+                           <font>
+                              <Font name="Georgia" size="13.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="14.0" layoutY="438.0" text="Custom Question 1 :">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="txtCustom1" layoutX="14.0" layoutY="457.0" prefHeight="41.0" prefWidth="545.0" />
+                        <Label layoutX="12.0" layoutY="510.0" text="Custom Question 2 :">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="txtCustom2" layoutX="9.0" layoutY="536.0" prefHeight="41.0" prefWidth="545.0" />
+                        <Label layoutX="14.0" layoutY="604.0" text="Custom Question 1 :">
+                           <font>
+                              <Font name="Georgia" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="9.0" layoutY="623.0" prefHeight="41.0" prefWidth="545.0" />
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+      </items>
+    </SplitPane>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+      <children>
+        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+          <textFill>
+            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
+          </textFill>
+        </Label>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>
