@@ -42,6 +42,8 @@ public class CreateScholarshipFXMLController implements Initializable {
     @FXML
     private TextField txtEnterSchName;
     @FXML
+    private Label statustxt
+    @FXML
     private TextArea txtSchDescription;
     @FXML
     private CheckBox chkGPA;
@@ -61,6 +63,8 @@ public class CreateScholarshipFXMLController implements Initializable {
     private TextArea txtCustom1;
     @FXML
     private TextArea txtCustom2;
+    @FXML
+    private TextArea txtCustom3;
     @FXML
     private Color x4;
     @FXML
