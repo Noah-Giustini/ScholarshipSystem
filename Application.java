@@ -42,7 +42,7 @@ public class Application{
 			this.appfile = "Applications\\" + this.scholarship + this.student + ".txt";
 		}
 		else{
-			this.appfile = "ApplicationSaves\\" + this.scholarship + this.student + ".txt";
+			this.appfile = "ApplicationDrafts\\" + this.scholarship + this.student + ".txt";
 		}
 		
 		File f = new File(this.appfile);

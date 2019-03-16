@@ -80,6 +80,48 @@ public class CreateScholarshipFXMLController implements Initializable {
 
     @FXML
     private void handleSaveScholarship(MouseEvent event) {
+		
+		String name = txtEnterSchName.getText().trim();
+		
+		If (name.equals("")){
+			statustxt.setText("Unable to Save: Scholarship Requires Name"); 
+			return
+		}
+		
+		LocalDate date = dateGetter.getValue();
+		int day = date.getDayofMonth();
+		int month = date.getMonthValue();
+		int year = date.getYe8  ar();
+		String strDay;
+		String strMonth;
+		String strYear = Integer.toString(year);
+		
+		
+		if (day < 10){
+			strDay = "0" + Integer.toString(day);
+		}
+		else {
+			strDay = Integer.toString(day);
+		}
+		
+		if (month < 10){
+			strMonth = "0" + Integer.toString(month);
+		}
+		else {
+			strMonth = Integer.toString(month);
+		}
+		
+		String duedate = strDay + "/" + strMonth + "/" + strYear;
+		
+		if 
+		
+		double amount = 
+		
+		int recipients
+		
+		ArrayList<String> levels
+			
+		
     }
 
     @FXML

@@ -37,7 +37,54 @@ public static Stage mainStage;
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+		        launch(args);
     }
+	
+		
+	/**
+	* Looks through Scholarships folder and adds all scholarships to the 
+	* arraylist scholarships
+	 */	
+	public void findScholarships()throws Exception{
+		
+		File dir = new File("Scholarships\\");
+		File[] directoryListing = dir.listFiles();
+		
+		if (directoryListing != null) {
+			for (File child : directoryListing) { 	
+				String schname = child.getName();
+				Scholarship s = new Scholarship(schname, true);
+					scholarships.add(s);
+				}
+			}
+		
+		//for (int i = 0; i < scholarships.size(); i++){
+		//	System.out.println(scholarships.get(i));
+		//}	
+	}
+	
+	/**
+	* Looks through the ScholarshipDrafts folder and adds all scholarships to the 
+	* arraylist ScholarshipSaves
+	 */	
+	public void findScholarshipDrafts()throws Exception{
+		
+		File dir = new File("ScholarshipDrafts\\");
+		File[] directoryListing = dir.listFiles();
+		
+		if (directoryListing != null) {
+			for (File child : directoryListing) { 	
+				String schname = child.getName();
+				Scholarship s = new Scholarship(schname, false);
+					scholarshipdrafts.add(s);
+				}
+			}
+		
+		//for (int i = 0; i < scholarshipdrafts.size(); i++){
+		//	System.out.println(scholarshipdrafts.get(i));
+		//}	
+	}
+	
+		
     
 }

@@ -19,10 +19,11 @@ public class TestScholarship{
 		
 		s1.setLevels(lvl);
 		
-		Scholarship s2 = new Scholarship("Athletics Scholarship", false);
+		Scholarship s2 = new Scholarship("Athletics Scholarship", true);
 		
+		s2.findApplications();
 		
-		s2.setName("New Ath SCholr");
+	
 		
 		s2.setDueDate("12/09/2019");
 		
@@ -30,17 +31,16 @@ public class TestScholarship{
 		
 		Scholarship s3 = new Scholarship("tester", false);
 		
-		System.out.println(s3.getRecipients());
+
 		
 		Application a1 = new Application("test", "cool name", false);
 		
 		a1.setPriority(1);
-		
-		System.out.println(a1.getGPA());
-		
-		System.out.println(s2);
 
-		System.out.println(a1);
+		
+		Application aa = new Application("Athletics Scholarship", "cool", true);
+		aa.setGPA(2.0);
+		Application ab = new Application("Athletics Scholarship", "csdf", true);
 
 
 	}

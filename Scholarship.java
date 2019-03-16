@@ -19,6 +19,7 @@ public class Scholarship{
 	private int recipients = 0;
 	private int chosen = 0;
 	private ArrayList<String> levels = new ArrayList<String>();
+	private ArrayList<Application> applications = new ArrayList<Application>();
 
 	/**
 	* Constructor.
@@ -35,7 +36,7 @@ public class Scholarship{
 			this.schfile = "Scholarships\\" + schname + ".txt";
 		}
 		else{
-			this.schfile = "ScholarshipSaves\\" + schname + ".txt";
+			this.schfile = "ScholarshipDrafts\\" + schname + ".txt";
 		}
 			
 		
@@ -129,7 +130,7 @@ public class Scholarship{
 				newschfile = "Scholarships\\" + this.name + ".txt";
 			}
 			else {
-				newschfile = "ScholarshipSaves\\" + this.name + ".txt";
+				newschfile = "ScholarshipDrafts\\" + this.name + ".txt";
 			}
 			
 			File f1 = new File(newschfile);
@@ -214,6 +215,32 @@ public class Scholarship{
 			txt = txt + this.levels.get(i) + " ";
 		}
 		overWriteLine("Education Level", txt);
+	}
+	
+	/**
+	* Looks through Applications folder and adds all applications for the 
+	* scholarship to the arraylist applications
+	 */	
+	public void findApplications()throws Exception{
+		
+		File dir = new File("Applications\\");
+		File[] directoryListing = dir.listFiles();
+		
+		if (directoryListing != null) {
+			for (File child : directoryListing) { 
+				if (child.getName().indexOf(this.name) == 0){
+					
+					String appname = child.getName();
+					String stuname = appname.substring(this.name.length(), appname.length()-4);
+					//System.out.println(stuname);
+					Application a = new Application(this.name, stuname, true);
+					applications.add(a);
+				}
+			}
+		}
+		//for (int i = 0; i < applications.size(); i++){
+		//	System.out.println(applications.get(i));
+		//}	
 	}	
 	
 	/**
@@ -295,6 +322,7 @@ public class Scholarship{
 			}
 		}
 		
+		findApplications();
 		br.close();	
 	}
 	
