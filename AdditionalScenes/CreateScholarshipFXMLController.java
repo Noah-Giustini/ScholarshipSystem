@@ -7,6 +7,8 @@ package AdditionalScenes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -42,7 +45,7 @@ public class CreateScholarshipFXMLController implements Initializable {
     @FXML
     private TextField txtEnterSchName;
     @FXML
-    private Label statustxt
+    private Label statustxt;
     @FXML
     private TextArea txtSchDescription;
     @FXML
@@ -83,15 +86,15 @@ public class CreateScholarshipFXMLController implements Initializable {
 		
 		String name = txtEnterSchName.getText().trim();
 		
-		If (name.equals("")){
+		if (name.equals("")){
 			statustxt.setText("Unable to Save: Scholarship Requires Name"); 
-			return
+		
 		}
 		
 		LocalDate date = dateGetter.getValue();
-		int day = date.getDayofMonth();
+		int day = date.getDayOfMonth();
 		int month = date.getMonthValue();
-		int year = date.getYe8  ar();
+		int year = date.getYear();
 		String strDay;
 		String strMonth;
 		String strYear = Integer.toString(year);
@@ -113,13 +116,12 @@ public class CreateScholarshipFXMLController implements Initializable {
 		
 		String duedate = strDay + "/" + strMonth + "/" + strYear;
 		
-		if 
 		
-		double amount = 
+		double amount;
 		
-		int recipients
+		int recipients;
 		
-		ArrayList<String> levels
+		ArrayList<String> levels;
 			
 		
     }

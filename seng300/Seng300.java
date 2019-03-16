@@ -31,8 +31,9 @@ public class Seng300 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Seng300.mainStage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("adminMainPage.fxml"));
         Seng300.startUp();
+        Parent root = FXMLLoader.load(getClass().getResource("adminMainPage.fxml"));
+        
 
         Scene scene = new Scene(root);
 
@@ -63,6 +64,7 @@ public class Seng300 extends Application {
                 String name = a.getName().substring(0, (a.getName().length() - 4));
                 try {
                     Scholarship newSch = new Scholarship(name, true);
+
                     Seng300.addScholarship(newSch);
                 } catch (Exception e) {
                     System.out.println("Something done fucked up loading scholarships");
