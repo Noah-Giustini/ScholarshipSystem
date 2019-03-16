@@ -6,85 +6,68 @@
 package seng300;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import Essentials.*;
 
 /**
  *
  * @author Kaitlin
  */
 
-
 public class Seng300 extends Application {
-public static Stage mainStage;
-    
+
+    public static Stage mainStage;
+
+    private static ArrayList<Scholarship> sch = new ArrayList<Scholarship>();
+
     @Override
     public void start(Stage stage) throws Exception {
         Seng300.mainStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("adminMainPage.fxml"));
-        
+        Seng300.startUp();
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
-  
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-		        launch(args);
+        launch(args);
     }
-	
-		
-	/**
-	* Looks through Scholarships folder and adds all scholarships to the 
-	* arraylist scholarships
-	 */	
-	public void findScholarships()throws Exception{
-		
-		File dir = new File("Scholarships\\");
-		File[] directoryListing = dir.listFiles();
-		
-		if (directoryListing != null) {
-			for (File child : directoryListing) { 	
-				String schname = child.getName();
-				Scholarship s = new Scholarship(schname, true);
-					scholarships.add(s);
-				}
-			}
-		
-		//for (int i = 0; i < scholarships.size(); i++){
-		//	System.out.println(scholarships.get(i));
-		//}	
-	}
-	
-	/**
-	* Looks through the ScholarshipDrafts folder and adds all scholarships to the 
-	* arraylist ScholarshipSaves
-	 */	
-	public void findScholarshipDrafts()throws Exception{
-		
-		File dir = new File("ScholarshipDrafts\\");
-		File[] directoryListing = dir.listFiles();
-		
-		if (directoryListing != null) {
-			for (File child : directoryListing) { 	
-				String schname = child.getName();
-				Scholarship s = new Scholarship(schname, false);
-					scholarshipdrafts.add(s);
-				}
-			}
-		
-		//for (int i = 0; i < scholarshipdrafts.size(); i++){
-		//	System.out.println(scholarshipdrafts.get(i));
-		//}	
-	}
-	
-		
-    
+
+    public static void addScholarship(Scholarship newSch) {
+        sch.add(newSch);
+    }
+
+    public static ArrayList<Scholarship> getScholarships() {
+        return sch;
+    }
+
+    public static void startUp() {
+        File folder = new File("ScholarshipSystem" + File.separator + "Scholarships");
+        File[] listOfFiles = folder.listFiles();
+        for (File a : listOfFiles) {
+            if (a.isFile()) {
+                String name = a.getName().substring(0, (a.getName().length() - 4));
+                try {
+                    Scholarship newSch = new Scholarship(name, true);
+                    Seng300.addScholarship(newSch);
+                } catch (Exception e) {
+                    System.out.println("Something done fucked up loading scholarships");
+                }
+            }
+        }
+    }
 }
