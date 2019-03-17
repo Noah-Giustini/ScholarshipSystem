@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng300.MainPageController">
+   <children>
+      <Button fx:id="viewScholarshipBackBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="76.0" text="Back" />
+      <Label layoutX="52.0" layoutY="68.0" text="Scholarship Name">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="viewScholarshipNameTextField" editable="false" layoutX="244.0" layoutY="69.0" />
+      <Label layoutX="52.0" layoutY="107.0" prefHeight="27.0" prefWidth="141.0" text="Due Date">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="viewScholarshipDueDateTextField" editable="false" layoutX="244.0" layoutY="108.0" />
+      <Label layoutX="52.0" layoutY="146.0" prefHeight="27.0" prefWidth="141.0" text="Reward Amount">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="viewScholarshipAmountTextField" editable="false" layoutX="244.0" layoutY="147.0" />
+      <Label layoutX="52.0" layoutY="185.0" prefHeight="27.0" prefWidth="141.0" text="Recipients">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="viewScholarshipRecipientsTextField" editable="false" layoutX="244.0" layoutY="186.0" />
+      <Label layoutX="52.0" layoutY="224.0" prefHeight="27.0" prefWidth="149.0" text="Recipients Chosen">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="viewScholarshipRecipientsChosenTextField" editable="false" layoutX="244.0" layoutY="225.0" />
+      <Label layoutX="52.0" layoutY="263.0" prefHeight="27.0" prefWidth="149.0" text="Education Level">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="viewScholarshipEducationLevelTextField" editable="false" layoutX="244.0" layoutY="264.0" />
+   </children>
+</Pane>
